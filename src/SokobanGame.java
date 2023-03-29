@@ -47,7 +47,7 @@ public class SokobanGame {
 
 
     private char action;
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
     private static int[][][] levels = {{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 3, 0, 3, 2, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 2, 0, 3, 4, 1, 1, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 1, 3, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
 
             {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 4, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 0, 3, 3, 1, 0, 1, 1, 1, 0, 0, 0}, {0, 0, 0, 0, 1, 0, 3, 0, 1, 0, 1, 2, 1, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 2, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 2, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
@@ -69,7 +69,7 @@ public class SokobanGame {
     /**
      * 初始化游戏
      */
-    private void init() {
+    public void init() {
         initLevel();//初始化对应等级的游戏
         drawMap();//绘制出当前等级的地图
         showMoveInfo();//初始化对应等级的游戏数据
@@ -81,7 +81,7 @@ public class SokobanGame {
      * 初始化游戏等级
      */
 
-    private int[][] copyArray(int[][] motoArray) {
+    public int[][] copyArray(int[][] motoArray) {
         int row = motoArray.length;
         int column = motoArray[0].length;
         int[][] res = new int[row][column];
@@ -94,7 +94,7 @@ public class SokobanGame {
         return res;
     }
 
-    private void initLevel() {
+    public void initLevel() {
 
         //当前移动过的游戏地图
         curMap = copyArray(levels[iCurLevel]);
@@ -114,7 +114,7 @@ public class SokobanGame {
         moveTimes = 0;
     }
 
-    private void selectLevel(int level) {
+    public void selectLevel(int level) {
         //iCurLevel当前的地图关数
         iCurLevel = level;
         int len = levels.length;
@@ -131,7 +131,7 @@ public class SokobanGame {
      *
      * @param dir 移动方向
      */
-    private void go(String dir) {
+    public void go(String dir) {
         preMap = copyArray(curMap);
 
         Point p1 = null, p2 = null;
@@ -177,7 +177,7 @@ public class SokobanGame {
         }
     }
 
-    private void drawMap() {
+    public void drawMap() {
         for (int i = 0; i < curMap.length; i++) {
             for (int j = 0; j < curMap[0].length; j++) {
                 System.out.print(MAP.get(curMap[i][j]) + "  ");
@@ -188,7 +188,7 @@ public class SokobanGame {
 
     //repeal
 
-    private void repeal() {
+    public void repeal() {
         if (repeal != 0) {
             repeal = 0;
             moveTimes--;
@@ -199,7 +199,7 @@ public class SokobanGame {
             System.out.println("当前不能进行撤回操作！");
     }
 
-    private void showMoveInfo() {
+    public void showMoveInfo() {
         System.out.println("当前关卡：" + iCurLevel);
         System.out.println("当前步数：" + moveTimes);
         System.out.println("1：围墙   2：目标点   3：箱子    4：人物");
@@ -212,7 +212,7 @@ public class SokobanGame {
      *
      * @return true 推成功 false 推失败
      */
-    private boolean checkFinish() {
+    public boolean checkFinish() {
         for (int i = 0; i < curMap.length; i++) {
             for (int j = 0; j < curMap[i].length; j++) {
                 //当前移动过的地图和初始地图进行比较，若果初始地图上的陷进参数在移动之后不是箱子的话就指代没推成功
@@ -233,7 +233,7 @@ public class SokobanGame {
      * @param p2 小人前面的前面的坐标
      * @return true 能够移动 false 不能移动
      */
-    private boolean tryGo(Point p1, Point p2) {
+    public boolean tryGo(Point p1, Point p2) {
         if (p1.x < 0 || p1.y < 0 || p1.x > curMap.length || p1.y > curMap[0].length || curMap[p1.x][p1.y] == WALL) {
             return false;
         }
@@ -271,13 +271,13 @@ public class SokobanGame {
     //判断是否推成功
 
 
-    private void getInput() {
+    public void getInput() {
         System.out.print("请输入一个字符：");
         // 读取字符
         action = scanner.next().charAt(0);
     }
 
-    private void getLevelFromInput() {
+    public void getLevelFromInput() {
 
         System.out.print("请输入要跳转的关卡：");
         // 读取字符
@@ -285,7 +285,7 @@ public class SokobanGame {
         selectLevel(toLevel - 1);
     }
 
-    private void execute() {
+    public void execute() {
         switch (action) {
             case 'a':
                 go("left");
