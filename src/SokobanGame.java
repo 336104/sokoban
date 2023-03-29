@@ -110,17 +110,26 @@ public class SokobanGame {
         //当前等级的初始地图
         curLevel = levels[iCurLevel];
 
+        searchPosition(curLevel);
+        //游戏关卡移动步数清零
+        moveTimes = 0;
+    }
+
+    /**
+     * 寻找角色初始位置
+     *
+     * @param curMap
+     */
+    public void searchPosition(int[][] curMap) {
         //寻找角色初始位置
-        for (int i = 0; i < curLevel.length; i++) {
-            for (int j = 0; j < curLevel[0].length; j++) {
-                if (curLevel[i][j] == PLAYER) {
+        for (int i = 0; i < curMap.length; i++) {
+            for (int j = 0; j < curMap[0].length; j++) {
+                if (curMap[i][j] == PLAYER) {
                     prePosition = new Point(i, j);
                     break;
                 }
             }
         }
-        //游戏关卡移动步数清零
-        moveTimes = 0;
     }
 
     public void selectLevel(int level) {
@@ -192,7 +201,7 @@ public class SokobanGame {
     public void drawMap() {
         for (int i = 0; i < curMap.length; i++) {
             for (int j = 0; j < curMap[0].length; j++) {
-                System.out.print(MAP.get(curMap[i][j]) + "  ");
+                System.out.print(MAP.get(curMap[i][j]));
             }
             System.out.println();
         }
@@ -206,6 +215,7 @@ public class SokobanGame {
             repeal = 0;
             moveTimes--;
             curMap = copyArray(preMap);
+            searchPosition(curMap);
             drawMap();
             showMoveInfo();
         } else
