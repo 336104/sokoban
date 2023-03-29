@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 import java.awt.Point;
@@ -12,23 +11,29 @@ public class SokobanGame {
      * 上一次的地图
      */
     private int[][] preMap;
+    /**
+     * 撤回
+     */
     private int repeal = 0;
     /**
-     * 当前的地图
+     * 当前地图状态
      */
     private int[][] curMap;
     /**
-     * 当前等级的地图
+     * 当前等级的初始地图
      */
     private int[][] curLevel;
     /**
-     * 关卡数
+     * 当前关卡数
      */
     private int iCurLevel = 0;
     /**
      * 移动了多少次
      */
     private int moveTimes = 0;
+    /**
+     * 最大移动次数
+     */
     private final int maxSteps = 100;
 
     private static final int SPACE = 0;
@@ -36,18 +41,25 @@ public class SokobanGame {
     private static final int GOAL = 2;
     private static final int BOX = 3;
     private static final int PLAYER = 4;
-    private static final int TRAP = 5;
+    /**
+     * 用于显示的字符
+     */
     private static final Map<Integer, String> MAP = Map.of(
             SPACE, "\uD83C\uDF3F",
             WALL, "\uD83E\uDDF1",
             GOAL, "⭐",
             BOX, "\uD83D\uDCE6",
-            PLAYER, "\uD83D\uDE42",
-            TRAP, "⛔️");
+            PLAYER, "\uD83D\uDE42");
 
-
+    /**
+     * 代表操作的字符
+     */
     private char action;
     private Scanner scanner = new Scanner(System.in);
+    private Point prePosition;
+    /**
+     * 全部地图数据
+     */
     private static int[][][] levels = {{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 3, 0, 3, 2, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 2, 0, 3, 4, 1, 1, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 1, 3, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
 
             {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 4, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 0, 3, 3, 1, 0, 1, 1, 1, 0, 0, 0}, {0, 0, 0, 0, 1, 0, 3, 0, 1, 0, 1, 2, 1, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 2, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 2, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
@@ -64,7 +76,6 @@ public class SokobanGame {
 
             {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0}, {0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0}, {0, 1, 0, 0, 0, 2, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0}, {0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}, {0, 1, 0, 1, 0, 3, 0, 3, 1, 2, 0, 1, 0, 0, 0, 0}, {0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0}, {0, 1, 0, 2, 1, 3, 0, 3, 0, 1, 0, 1, 0, 0, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0}, {0, 0, 1, 0, 1, 1, 1, 2, 0, 0, 0, 0, 4, 1, 0, 0}, {0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0}, {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}};
 
-    private Point prePosition;
 
     /**
      * 初始化游戏
@@ -75,12 +86,10 @@ public class SokobanGame {
         showMoveInfo();//初始化对应等级的游戏数据
     }
 
-    //初始化游戏等级
 
     /**
      * 初始化游戏等级
      */
-
     public int[][] copyArray(int[][] motoArray) {
         int row = motoArray.length;
         int column = motoArray[0].length;
@@ -177,6 +186,9 @@ public class SokobanGame {
         }
     }
 
+    /**
+     * 输出地图
+     */
     public void drawMap() {
         for (int i = 0; i < curMap.length; i++) {
             for (int j = 0; j < curMap[0].length; j++) {
@@ -186,8 +198,9 @@ public class SokobanGame {
         }
     }
 
-    //repeal
-
+    /**
+     * 撤回操作
+     */
     public void repeal() {
         if (repeal != 0) {
             repeal = 0;
@@ -205,7 +218,6 @@ public class SokobanGame {
         System.out.println("1：围墙   2：目标点   3：箱子    4：人物");
     }
 
-    //判断是否推成功
 
     /**
      * 判断是否推成功
@@ -224,7 +236,6 @@ public class SokobanGame {
         return true;
     }
 
-    //判断小人是否能够移动
 
     /**
      * 判断小人是否能够移动
@@ -242,41 +253,40 @@ public class SokobanGame {
             if (curMap[p2.x][p2.y] == WALL || curMap[p2.x][p2.y] == BOX) {
                 return false;
             }
-
-
             //若果判断不成功小人前面的箱子前进一步
             //更改地图对应坐标点的值
             curMap[p2.x][p2.y] = BOX;
-
         }
         //若果都没判断成功小人前进一步
         //更改地图对应坐标点的值
         curMap[p1.x][p1.y] = PLAYER;
+
         //若果小人前进了一步，小人原来的位置如何显示
         int v = curLevel[prePosition.x][prePosition.y];
-        //若果刚开始小人位置不是陷进的话
+        //小人移开之后之前小人的位置改为地板
         if (v != GOAL) {
-            //可能是5 既有箱子又陷进
-
-            //小人移开之后之前小人的位置改为地板
             v = SPACE;
         }
-        //重置小人位置的地图参数
         curMap[prePosition.x][prePosition.y] = v;
         //若果判断小人前进了一步，更新坐标值
         prePosition = p1;
         //若果小动了 返回true 指代能够移动小人
         return true;
     }
-    //判断是否推成功
 
 
+    /**
+     * 获取操作输入
+     */
     public void getInput() {
         System.out.print("请输入一个字符：");
         // 读取字符
         action = scanner.next().charAt(0);
     }
 
+    /**
+     * 选择关卡
+     */
     public void getLevelFromInput() {
 
         System.out.print("请输入要跳转的关卡：");
@@ -285,6 +295,9 @@ public class SokobanGame {
         selectLevel(toLevel - 1);
     }
 
+    /**
+     * 根据输入的字符执行对应的操作
+     */
     public void execute() {
         switch (action) {
             case 'a':
@@ -310,6 +323,13 @@ public class SokobanGame {
         }
     }
 
+    public void start() {
+        init();
+        while (true) {
+            getInput();
+            execute();
+        }
+    }
 
     public static void main(String[] args) {
         SokobanGame sokobanGame = new SokobanGame();
@@ -319,5 +339,89 @@ public class SokobanGame {
             sokobanGame.getInput();
             sokobanGame.execute();
         }
+    }
+
+    public int[][] getPreMap() {
+        return preMap;
+    }
+
+    public void setPreMap(int[][] preMap) {
+        this.preMap = preMap;
+    }
+
+    public int getRepeal() {
+        return repeal;
+    }
+
+    public void setRepeal(int repeal) {
+        this.repeal = repeal;
+    }
+
+    public int[][] getCurMap() {
+        return curMap;
+    }
+
+    public void setCurMap(int[][] curMap) {
+        this.curMap = curMap;
+    }
+
+    public int[][] getCurLevel() {
+        return curLevel;
+    }
+
+    public void setCurLevel(int[][] curLevel) {
+        this.curLevel = curLevel;
+    }
+
+    public int getiCurLevel() {
+        return iCurLevel;
+    }
+
+    public void setiCurLevel(int iCurLevel) {
+        this.iCurLevel = iCurLevel;
+    }
+
+    public int getMoveTimes() {
+        return moveTimes;
+    }
+
+    public void setMoveTimes(int moveTimes) {
+        this.moveTimes = moveTimes;
+    }
+
+    public int getMaxSteps() {
+        return maxSteps;
+    }
+
+    public char getAction() {
+        return action;
+    }
+
+    public void setAction(char action) {
+        this.action = action;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public static int[][][] getLevels() {
+        return levels;
+    }
+
+    public static void setLevels(int[][][] levels) {
+        SokobanGame.levels = levels;
+    }
+
+    public Point getPrePosition() {
+        return prePosition;
+    }
+
+    public void setPrePosition(Point prePosition) {
+        this.prePosition = prePosition;
     }
 }
