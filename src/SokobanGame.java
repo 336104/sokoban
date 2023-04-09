@@ -95,10 +95,11 @@ public class SokobanGame {
         int column = motoArray[0].length;
         int[][] res = new int[row][column];
 
-        for (int i = 0; i < row; i++)
+        for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
                 res[i][j] = motoArray[i][j];
             }
+        }
 
         return res;
     }
@@ -218,8 +219,9 @@ public class SokobanGame {
             searchPosition(curMap);
             drawMap();
             showMoveInfo();
-        } else
+        } else {
             System.out.println("当前不能进行撤回操作！");
+        }
     }
 
     public void showMoveInfo() {
