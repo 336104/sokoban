@@ -74,7 +74,7 @@ public class SokobanTest {
     @Test
     public void testSelectLevel6() {
         // 测试选择有效关卡
-        sokobanGame.selectLevel(98); // 选择第101关
+        sokobanGame.selectLevel(98); // 选择第99关
         Assert.assertEquals(99, sokobanGame.iCurLevel+1); // 预期关卡应该是99
     }
 }
