@@ -162,9 +162,9 @@ public class SokobanGame {
         //iCurLevel当前的地图关数
         iCurLevel = level;
         int len = levels.length;
-        if (iCurLevel < 0 || iCurLevel > len - 1) {
-            System.out.println("关卡范围为1~" + len);
-            return;
+            if (iCurLevel < 0 || iCurLevel > len - 1) {
+                System.out.println("关卡范围为1~" + len +"；您输入的关卡数字是"+iCurLevel+"无效，请重新输入，谢谢！");
+                return;
         }
         //初始当前等级关卡
         init();
