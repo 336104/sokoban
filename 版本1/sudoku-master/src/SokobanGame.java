@@ -160,14 +160,16 @@ public class SokobanGame {
      *
      */
     public void selectLevel(int level) {
-        //iCurLevel当前的地图关数
+
+        // iCurLevel 当前的地图关数
         iCurLevel = level;
         int len = levels.length;
-            if (iCurLevel < 0 || iCurLevel > len - 1) {
-                System.out.println("关卡范围为1~" + len +"；您输入的关卡数字是"+iCurLevel+"无效，请重新输入，谢谢！");
-                return;
+        if (iCurLevel < 0 || iCurLevel >= len) {
+            System.out.println("关卡范围为1~" + len +"；您输入的关卡数字是无效的，请重新输入，谢谢！");
+            return;
         }
-        //初始当前等级关卡
+
+        // 初始当前等级关卡
         init();
     }
 
@@ -176,11 +178,22 @@ public class SokobanGame {
      *
      */
     public void showMoveInfo() {
-        int guankashu=iCurLevel+1;
-        System.out.println("当前关卡：" + guankashu);
+        // 输出当前关卡，从1开始
+        System.out.println("当前关卡：" + (iCurLevel + 1));
         System.out.println("当前步数：" + moveTimes);
         System.out.println("w：往前一步   s：往后一步   a：往左一步   d：往右一步");
         System.out.println("r：回退到上一步   e：选择关卡");
+    }
+
+    /**
+     * 选择关卡
+     */
+    public void getLevelFromInput() {
+        System.out.print("请输入要跳转的关卡：");
+        // 读取字符
+        int toLevel = scanner.nextInt();
+        // 调整输入关卡到从0开始的索引
+        selectLevel(toLevel - 1);
     }
 
     /**
@@ -329,16 +342,6 @@ public class SokobanGame {
         action = scanner.next().charAt(0);
     }
 
-    /**
-     * 选择关卡
-     */
-    public void getLevelFromInput() {
-
-        System.out.print("请输入要跳转的关卡：");
-        // 读取字符
-        int toLevel = scanner.nextInt();
-        selectLevel(toLevel-1);
-    }
 
     /**
      * 根据输入的字符执行对应的操作
