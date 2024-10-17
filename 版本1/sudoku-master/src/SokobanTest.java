@@ -63,18 +63,18 @@ public class SokobanTest {
     public void testSelectLevel4() {
         // 测试选择有效关卡
         sokobanGame.selectLevel(-1); // 选择第0关
-        Assert.assertEquals(0, sokobanGame.iCurLevel+1); // 预期关卡应该是100
+        Assert.assertEquals(0, sokobanGame.iCurLevel+1); // 超出范围无效
     }
     @Test
     public void testSelectLevel5() {
         // 测试选择有效关卡
         sokobanGame.selectLevel(100); // 选择第101关
-        Assert.assertEquals(101, sokobanGame.iCurLevel+1); // 预期关卡应该是100
+        Assert.assertEquals(101, sokobanGame.iCurLevel+1); // 超出范围无效
     }
     @Test
     public void testSelectLevel6() {
         // 测试选择有效关卡
         sokobanGame.selectLevel(98); // 选择第101关
-        Assert.assertEquals(99, sokobanGame.iCurLevel+1); // 预期关卡应该是100
+        Assert.assertEquals(99, sokobanGame.iCurLevel+1); // 预期关卡应该是99
     }
 }
