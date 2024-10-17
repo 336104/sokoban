@@ -154,7 +154,7 @@ public class SokobanGame {
             }
         }
     }
-    
+
     /**
      * 选择关卡
      *
@@ -176,7 +176,7 @@ public class SokobanGame {
      *
      */
     public void showMoveInfo() {
-        int guankashu=iCurLevel;
+        int guankashu=iCurLevel+1;
         System.out.println("当前关卡：" + guankashu);
         System.out.println("当前步数：" + moveTimes);
         System.out.println("w：往前一步   s：往后一步   a：往左一步   d：往右一步");
