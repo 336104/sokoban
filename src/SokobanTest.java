@@ -1,6 +1,6 @@
 import org.junit.Test;
 
-public class SokubanTest {
+public class SokobanTest {
     @Test
     public void testTryGO() {
 

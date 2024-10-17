@@ -10,41 +10,41 @@ public class SokobanGame {
     /**
      * 上一次的地图
      */
-    private int[][] preMap;
+    public int[][] preMap;
     /**
      * 撤回
      */
-    private int repeal = 0;
+    public int repeal = 0;
     /**
      * 当前地图状态
      */
-    private int[][] curMap;
+    public int[][] curMap;
     /**
      * 当前等级的初始地图
      */
-    private int[][] curLevel;
+    public int[][] curLevel;
     /**
      * 当前关卡数
      */
-    private int iCurLevel = 0;
+    public int iCurLevel = 0;
     /**
      * 移动了多少次
      */
-    private int moveTimes = 0;
+    public int moveTimes = 0;
     /**
      * 最大移动次数
      */
-    private final int maxSteps = 100;
+    public final int maxSteps = 100;
 
-    private static final int SPACE = 0;
-    private static final int WALL = 1;
-    private static final int GOAL = 2;
-    private static final int BOX = 3;
-    private static final int PLAYER = 4;
+    public static final int SPACE = 0;
+    public static final int WALL = 1;
+    public static final int GOAL = 2;
+    public static final int BOX = 3;
+    public static final int PLAYER = 4;
     /**
      * 用于显示的字符
      */
-    private static final Map<Integer, String> MAP = Map.of(
+    public static final Map<Integer, String> MAP = Map.of(
             SPACE, "\uD83C\uDF3F",
             WALL, "\uD83E\uDDF1",
             GOAL, "⭐",
@@ -54,13 +54,13 @@ public class SokobanGame {
     /**
      * 代表操作的字符
      */
-    private char action;
-    private Scanner scanner = new Scanner(System.in);
-    private Point prePosition;
+    public char action;
+    public Scanner scanner = new Scanner(System.in);
+    public Point prePosition;
     /**
      * 全部地图数据
      */
-    private static int[][][] levels = {{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 3, 0, 3, 2, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 2, 0, 3, 4, 1, 1, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 1, 3, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
+    public static int[][][] levels = {{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 3, 0, 3, 2, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 2, 0, 3, 4, 1, 1, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 1, 3, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
 
             {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 4, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 0, 3, 3, 1, 0, 1, 1, 1, 0, 0, 0}, {0, 0, 0, 0, 1, 0, 3, 0, 1, 0, 1, 2, 1, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 2, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 2, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},
 
@@ -335,14 +335,6 @@ public class SokobanGame {
         }
     }
 
-    public void start() {
-        init();
-        while (true) {
-            getInput();
-            execute();
-        }
-    }
-
     public static void main(String[] args) {
         SokobanGame sokobanGame = new SokobanGame();
 
@@ -351,89 +343,5 @@ public class SokobanGame {
             sokobanGame.getInput();
             sokobanGame.execute();
         }
-    }
-
-    public int[][] getPreMap() {
-        return preMap;
-    }
-
-    public void setPreMap(int[][] preMap) {
-        this.preMap = preMap;
-    }
-
-    public int getRepeal() {
-        return repeal;
-    }
-
-    public void setRepeal(int repeal) {
-        this.repeal = repeal;
-    }
-
-    public int[][] getCurMap() {
-        return curMap;
-    }
-
-    public void setCurMap(int[][] curMap) {
-        this.curMap = curMap;
-    }
-
-    public int[][] getCurLevel() {
-        return curLevel;
-    }
-
-    public void setCurLevel(int[][] curLevel) {
-        this.curLevel = curLevel;
-    }
-
-    public int getiCurLevel() {
-        return iCurLevel;
-    }
-
-    public void setiCurLevel(int iCurLevel) {
-        this.iCurLevel = iCurLevel;
-    }
-
-    public int getMoveTimes() {
-        return moveTimes;
-    }
-
-    public void setMoveTimes(int moveTimes) {
-        this.moveTimes = moveTimes;
-    }
-
-    public int getMaxSteps() {
-        return maxSteps;
-    }
-
-    public char getAction() {
-        return action;
-    }
-
-    public void setAction(char action) {
-        this.action = action;
-    }
-
-    public Scanner getScanner() {
-        return scanner;
-    }
-
-    public void setScanner(Scanner scanner) {
-        this.scanner = scanner;
-    }
-
-    public static int[][][] getLevels() {
-        return levels;
-    }
-
-    public static void setLevels(int[][][] levels) {
-        SokobanGame.levels = levels;
-    }
-
-    public Point getPrePosition() {
-        return prePosition;
-    }
-
-    public void setPrePosition(Point prePosition) {
-        this.prePosition = prePosition;
     }
 }
