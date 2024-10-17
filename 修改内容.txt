@@ -1,0 +1,2 @@
+1.修改了用文件形式读取100个地图，大家记得在main函数里面的loadMapsFromFile("C:/Users/10424/Desktop/postgraduate/maps.txt"改成自己放地图txt的路径（最好是全英文和数组组合）
+2.修改了没有显示出来的r和e（原代码也有，只是我修改了界面好看一点）
