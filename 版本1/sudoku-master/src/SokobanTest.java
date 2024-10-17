@@ -32,19 +32,20 @@ public class SokobanTest {
     @Test
     public void testSelectLevel0() {
         // 测试选择有效关卡
-        sokobanGame.selectLevel(0); // 选择第一关
-        Assert.assertEquals(1, sokobanGame.iCurLevel + 1); // 预期关卡应该是1（iCurLevel 从0开始）
+        sokobanGame.selectLevel(1); // 选择第一关
+        Assert.assertEquals(1, sokobanGame.iCurLevel); // 预期关卡应该是1
     }
     @Test
     public void testSelectLevel1() {
         // 测试选择有效关卡
-        sokobanGame.selectLevel(100); // 选择第101关
-        Assert.assertEquals(101, sokobanGame.iCurLevel + 1); // 超出范围
+        sokobanGame.selectLevel(101); // 选择第101关
+        Assert.assertEquals(101, sokobanGame.iCurLevel ); // 超出范围无效
     }
     @Test
     public void testSelectLevel2() {
         // 测试选择有效关卡
         sokobanGame.selectLevel(-1); // 选择第101关
-        Assert.assertEquals(0, sokobanGame.iCurLevel + 1); // 无效
+        Assert.assertEquals(-1, sokobanGame.iCurLevel); // 超出范围无效
     }
+
 }
