@@ -337,7 +337,7 @@ public class SokobanGame {
      * 获取操作输入
      */
     public void getInput() {
-        System.out.print("请输入一个字符：");
+        System.out.print("请输入一个整型字符：");
         // 读取字符
         action = scanner.next().charAt(0);
     }
