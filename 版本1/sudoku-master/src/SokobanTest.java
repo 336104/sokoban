@@ -51,13 +51,13 @@ public class SokobanTest {
     public void testSelectLevel2() {
         // 测试选择有效关卡
         sokobanGame.selectLevel(1); // 选择第2关
-        Assert.assertEquals(2, sokobanGame.iCurLevel+1); // 超出范围无效
+        Assert.assertEquals(2, sokobanGame.iCurLevel+1); // 预期关卡应该是2
     }
     @Test
     public void testSelectLevel3() {
         // 测试选择有效关卡
         sokobanGame.selectLevel(49); // 选择第50关
-        Assert.assertEquals(50, sokobanGame.iCurLevel+1); // 超出范围无效
+        Assert.assertEquals(50, sokobanGame.iCurLevel+1); // 预期关卡应该是50
     }
     @Test
     public void testSelectLevel4() {
