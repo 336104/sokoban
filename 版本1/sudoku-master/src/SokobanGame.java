@@ -4,9 +4,7 @@ import java.util.Scanner;
 import java.io.*;
 import java.util.*;
 
-/**
- * @author 310
- */
+
 public class SokobanGame {
 
     /**
@@ -144,7 +142,6 @@ public class SokobanGame {
     /**
      * 寻找角色初始位置
      *
-     * @param curMap
      */
     public void searchPosition(int[][] curMap) {
         //寻找角色初始位置
@@ -157,7 +154,11 @@ public class SokobanGame {
             }
         }
     }
-
+    
+    /**
+     * 选择关卡
+     *
+     */
     public void selectLevel(int level) {
         //iCurLevel当前的地图关数
         iCurLevel = level;
@@ -171,9 +172,21 @@ public class SokobanGame {
     }
 
     /**
+     * 显示关卡
+     *
+     */
+    public void showMoveInfo() {
+        int guankashu=iCurLevel;
+        System.out.println("当前关卡：" + guankashu);
+        System.out.println("当前步数：" + moveTimes);
+        System.out.println("w：往前一步   s：往后一步   a：往左一步   d：往右一步");
+        System.out.println("r：回退到上一步   e：选择关卡");
+    }
+
+    /**
      * 小人移动
      *
-     * @param dir 移动方向
+     * dir 移动方向
      */
     public void go(String dir) {
         preMap = copyArray(curMap);
@@ -249,19 +262,12 @@ public class SokobanGame {
         }
     }
 
-    public void showMoveInfo() {
-        int guankashu=iCurLevel+1;
-        System.out.println("当前关卡：" + guankashu);
-        System.out.println("当前步数：" + moveTimes);
-        System.out.println("w：往前一步   s：往后一步   a：往左一步   d：往右一步");
-        System.out.println("r：回退到上一步   e：选择关卡");
-    }
 
 
     /**
      * 判断是否推成功
      *
-     * @return true 推成功 false 推失败
+     * true 推成功 false 推失败
      */
     public boolean checkFinish() {
         for (int i = 0; i < curMap.length; i++) {
@@ -279,9 +285,9 @@ public class SokobanGame {
     /**
      * 判断小人是否能够移动
      *
-     * @param p1 小人前面的坐标
-     * @param p2 小人前面的前面的坐标
-     * @return true 能够移动 false 不能移动
+     * p1 小人前面的坐标
+     * p2 小人前面的前面的坐标
+     * true 能够移动 false 不能移动
      */
     public boolean tryGo(Point p1, Point p2) {
         if (p1.x < 0 || p1.y < 0 || p1.x > curMap.length || p1.y > curMap[0].length || curMap[p1.x][p1.y] == WALL) {
@@ -331,7 +337,7 @@ public class SokobanGame {
         System.out.print("请输入要跳转的关卡：");
         // 读取字符
         int toLevel = scanner.nextInt();
-        selectLevel(toLevel - 1);
+        selectLevel(toLevel-1);
     }
 
     /**
