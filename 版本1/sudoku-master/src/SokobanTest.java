@@ -38,43 +38,45 @@ public class SokobanTest {
     @Test
     public void testSelectLevel0() {
         // 测试选择有效关卡
+        sokobanGame.selectLevel(-1); // 选择第0关
+        Assert.assertEquals(0, sokobanGame.iCurLevel+1); // 超出范围无效
+    }
+    @Test
+    public void testSelectLevel1() {
+        // 测试选择有效关卡
         sokobanGame.selectLevel(0); // 选择第1关
         Assert.assertEquals(1, sokobanGame.iCurLevel+1); // 预期关卡应该是1
     }
     @Test
-    public void testSelectLevel1() {
+    public void testSelectLevel2() {
         // 测试选择有效关卡
         sokobanGame.selectLevel(1); // 选择第2关
         Assert.assertEquals(2, sokobanGame.iCurLevel+1); // 超出范围无效
     }
     @Test
-    public void testSelectLevel2() {
+    public void testSelectLevel3() {
         // 测试选择有效关卡
         sokobanGame.selectLevel(49); // 选择第50关
         Assert.assertEquals(50, sokobanGame.iCurLevel+1); // 超出范围无效
     }
     @Test
-    public void testSelectLevel3() {
-        // 测试选择有效关卡
-        sokobanGame.selectLevel(99); // 选择第100关
-        Assert.assertEquals(100, sokobanGame.iCurLevel+1); // 预期关卡应该是100
-    }
-    @Test
     public void testSelectLevel4() {
-        // 测试选择有效关卡
-        sokobanGame.selectLevel(-1); // 选择第0关
-        Assert.assertEquals(0, sokobanGame.iCurLevel+1); // 超出范围无效
-    }
-    @Test
-    public void testSelectLevel5() {
-        // 测试选择有效关卡
-        sokobanGame.selectLevel(100); // 选择第101关
-        Assert.assertEquals(101, sokobanGame.iCurLevel+1); // 超出范围无效
-    }
-    @Test
-    public void testSelectLevel6() {
         // 测试选择有效关卡
         sokobanGame.selectLevel(98); // 选择第99关
         Assert.assertEquals(99, sokobanGame.iCurLevel+1); // 预期关卡应该是99
     }
+    @Test
+    public void testSelectLevel5() {
+        // 测试选择有效关卡
+        sokobanGame.selectLevel(99); // 选择第100关
+        Assert.assertEquals(100, sokobanGame.iCurLevel+1); // 预期关卡应该是100
+    }
+
+    @Test
+    public void testSelectLevel6() {
+        // 测试选择有效关卡
+        sokobanGame.selectLevel(100); // 选择第101关
+        Assert.assertEquals(101, sokobanGame.iCurLevel+1); // 超出范围无效
+    }
+
 }
