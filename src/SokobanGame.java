@@ -240,7 +240,7 @@ public class SokobanGame {
     }
 
     public void showMoveInfo() {
-        System.out.println("当前关卡：" + iCurLevel);
+        System.out.println("当前关卡：" + (iCurLevel + 1));
         System.out.println("当前步数：" + moveTimes);
         System.out.println("1：围墙   2：目标点   3：箱子    4：人物");
     }
