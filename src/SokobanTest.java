@@ -33,55 +33,57 @@ public class SokobanTest {
      * 所以实际selectLevel传入的参数与实际输入的关卡数是差1的，所以传入的参数应该+1才是实际选择的关卡数目
      */
 
-    @Test
-    public void testSelectLevel0() {
-        // 测试选择有效关卡
-        sokobanGame.selectLevel(-1); // 选择第0关
-        Assert.assertEquals(0, sokobanGame.iCurLevel + 1); // 超出范围无效
-    }
-
-    @Test
+   @Test
     public void testSelectLevel1() {
         // 测试选择有效关卡
-        sokobanGame.selectLevel(0); // 选择第1关
-        Assert.assertEquals(1, sokobanGame.iCurLevel + 1); // 预期关卡应该是1
+        sokobanGame.selectLevel(-1); // 选择第0关
+        Assert.assertEquals(0, sokobanGame.iCurLevel+1); // 超出范围无效
     }
-
     @Test
     public void testSelectLevel2() {
         // 测试选择有效关卡
-        sokobanGame.selectLevel(1); // 选择第2关
-        Assert.assertEquals(2, sokobanGame.iCurLevel + 1); // 预期关卡应该是2
+        sokobanGame.selectLevel(0); // 选择第1关
+        Assert.assertEquals(1, sokobanGame.iCurLevel+1); // 预期关卡应该是1
     }
-
     @Test
     public void testSelectLevel3() {
         // 测试选择有效关卡
-        sokobanGame.selectLevel(49); // 选择第50关
-        Assert.assertEquals(50, sokobanGame.iCurLevel + 1); // 预期关卡应该是50
+        sokobanGame.selectLevel(1); // 选择第2关
+        Assert.assertEquals(2, sokobanGame.iCurLevel+1); // 预期关卡应该是2
     }
-
     @Test
     public void testSelectLevel4() {
         // 测试选择有效关卡
-        sokobanGame.selectLevel(98); // 选择第99关
-        Assert.assertEquals(99, sokobanGame.iCurLevel + 1); // 预期关卡应该是99
+        sokobanGame.selectLevel(49); // 选择第50关
+        Assert.assertEquals(50, sokobanGame.iCurLevel+1); // 预期关卡应该是50
     }
-
     @Test
     public void testSelectLevel5() {
         // 测试选择有效关卡
-        sokobanGame.selectLevel(99); // 选择第100关
-        Assert.assertEquals(100, sokobanGame.iCurLevel + 1); // 预期关卡应该是100
+        sokobanGame.selectLevel(98); // 选择第99关
+        Assert.assertEquals(99, sokobanGame.iCurLevel+1); // 预期关卡应该是99
     }
-
     @Test
     public void testSelectLevel6() {
         // 测试选择有效关卡
-        sokobanGame.selectLevel(100); // 选择第101关
-        Assert.assertEquals(101, sokobanGame.iCurLevel + 1); // 超出范围无效
+        sokobanGame.selectLevel(99); // 选择第100关
+        Assert.assertEquals(100, sokobanGame.iCurLevel+1); // 预期关卡应该是100
     }
 
+    @Test
+    public void testSelectLevel7() {
+        // 测试选择有效关卡
+        sokobanGame.selectLevel(100); // 选择第101关
+        Assert.assertEquals(101, sokobanGame.iCurLevel+1); // 超出范围无效
+    }
+    @Test
+    public void testSelectLevel8() {
+        // 测试选择有效关卡
+        sokobanGame.selectLevel((int)1.5); // 选择第2关,注意因为如果有小数点的话，这个处理部分应该是在输入读取的时候处理，再传参数给select函数
+        Assert.assertEquals(2, sokobanGame.iCurLevel+1); //预期关卡是2
+    }
+
+    
     @Test
     public void testPlayerMove28() {
         int[][] expectMap = new int[][]{
