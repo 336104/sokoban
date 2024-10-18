@@ -190,8 +190,9 @@ public class SokobanGame {
      */
     public void getLevelFromInput() {
         System.out.print("请输入要跳转的关卡：");
-        // 读取字符
-        int toLevel = scanner.nextInt();
+        // 使用 nextDouble 读取输入
+        double Temp = scanner.nextDouble();
+        int toLevel = (int) Temp; // 将小数部分向上舍入
         // 调整输入关卡到从0开始的索引
         selectLevel(toLevel - 1);
     }
@@ -337,7 +338,7 @@ public class SokobanGame {
      * 获取操作输入
      */
     public void getInput() {
-        System.out.print("请输入一个整型字符：");
+        System.out.print("请输入一个字符：");
         // 读取字符
         action = scanner.next().charAt(0);
     }
