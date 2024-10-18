@@ -78,5 +78,11 @@ public class SokobanTest {
         sokobanGame.selectLevel(100); // 选择第101关
         Assert.assertEquals(101, sokobanGame.iCurLevel+1); // 超出范围无效
     }
+    @Test
+    public void testSelectLevel7() {
+        // 测试选择有效关卡
+        sokobanGame.selectLevel((int)1.5); // 选择第2关,注意因为如果有小数点的话，这个处理部分应该是在输入读取的时候处理，再传参数给select函数
+        Assert.assertEquals(2, sokobanGame.iCurLevel+1); //预期关卡是2
+    }
 
 }
