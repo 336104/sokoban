@@ -374,7 +374,7 @@ public class SokobanGame {
 
         // 读取文件并解析
         try {
-            loadMapsFromFile("C:/Users/10424/Desktop/postgraduate/maps.txt", numberOfMaps, mapSize);
+            loadMapsFromFile("maps.txt", numberOfMaps, mapSize);
         } catch (IOException e) {
             e.printStackTrace();
         }
