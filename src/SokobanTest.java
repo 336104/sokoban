@@ -90,6 +90,86 @@ public class SokobanTest {
         Assert.assertEquals(2, sokobanGame.iCurLevel + 1); //预期关卡是2
     }
 
+ @Test
+    public void testGetLevelFromInput1() {
+        // 模拟用户输入的第1关卡
+        sokobanGame.scanner = new Scanner("1\n"); // 输入1并换行
+
+        // 调用 getLevelFromInput 方法
+        sokobanGame.getLevelFromInput();
+
+        // 验证选择的关卡是否正确
+        Assert.assertEquals(0, sokobanGame.iCurLevel); // 因为关卡索引是0基的，2-1=1
+    }
+    @Test
+    public void testGetLevelFromInput2() {
+        // 模拟用户输入的第2关卡
+        sokobanGame.scanner = new Scanner("2\n"); // 输入2并换行
+
+        // 调用 getLevelFromInput 方法
+        sokobanGame.getLevelFromInput();
+
+        // 验证选择的关卡是否正确
+        Assert.assertEquals(1, sokobanGame.iCurLevel); // 因为关卡索引是0基的，2-1=1
+    }
+    @Test
+    public void testGetLevelFromInput3() {
+        // 模拟用户输入的第2关卡
+        sokobanGame.scanner = new Scanner("-1\n"); // 输入2并换行
+
+        // 调用 getLevelFromInput 方法
+        sokobanGame.getLevelFromInput();
+
+        // 验证选择的关卡是否正确
+        Assert.assertEquals(-2, sokobanGame.iCurLevel); // 因为关卡索引是0基的，2-1=1
+    }
+
+    @Test
+    public void testGetLevelFromInput4() {
+        // 模拟用户输入的第50关卡
+        sokobanGame.scanner = new Scanner("50\n"); // 输入1并换行
+
+        // 调用 getLevelFromInput 方法
+        sokobanGame.getLevelFromInput();
+
+        // 验证选择的关卡是否正确
+        Assert.assertEquals(49, sokobanGame.iCurLevel); // 因为关卡索引是0基的，2-1=1
+    }
+    @Test
+    public void testGetLevelFromInput5() {
+        // 模拟用户输入的第100关卡
+        sokobanGame.scanner = new Scanner("100\n"); // 输入2并换行
+
+        // 调用 getLevelFromInput 方法
+        sokobanGame.getLevelFromInput();
+
+        // 验证选择的关卡是否正确
+        Assert.assertEquals(99, sokobanGame.iCurLevel); // 因为关卡索引是0基的，2-1=1
+    }
+    @Test
+    public void testGetLevelFromInput6() {
+        // 模拟用户输入的第101关卡
+        sokobanGame.scanner = new Scanner("101\n"); // 输入2并换行
+
+        // 调用 getLevelFromInput 方法
+        sokobanGame.getLevelFromInput();
+
+        // 验证选择的关卡是否正确
+        Assert.assertEquals(100, sokobanGame.iCurLevel); // 因为关卡索引是0基的，2-1=1
+    }
+    @Test
+    public void testGetLevelFromInput7() {
+        // 模拟用户输入的第99关卡
+        sokobanGame.scanner = new Scanner("99\n"); // 输入2并换行
+
+        // 调用 getLevelFromInput 方法
+        sokobanGame.getLevelFromInput();
+
+        // 验证选择的关卡是否正确
+        Assert.assertEquals(98, sokobanGame.iCurLevel); // 因为关卡索引是0基的，2-1=1
+    }
+    
+
     //    测试玩家能否正常移到到空地
     @Test
     public void testPlayerMoveSpace() {
