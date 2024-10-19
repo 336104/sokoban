@@ -2,6 +2,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -385,7 +386,7 @@ public class SokobanGame {
 
         // 读取文件并解析
         try {
-            loadMapsFromFile("maps.txt", numberOfMaps, mapSize);
+            loadMapsFromFile("C:/Users/10424/Desktop/postgraduate/maps.txt", numberOfMaps, mapSize);
         } catch (IOException e) {
             e.printStackTrace();
         }
