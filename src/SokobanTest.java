@@ -168,6 +168,17 @@ public class SokobanTest {
         // 验证选择的关卡是否正确
         Assert.assertEquals(98, sokobanGame.iCurLevel); // 因为关卡索引是0基的，2-1=1
     }
+     @Test
+    public void testGetLevelFromInput8() {
+        // 模拟用户输入的第99关卡
+        sokobanGame.scanner = new Scanner("2.5\n"); // 输入2并换行
+
+        // 调用 getLevelFromInput 方法
+        sokobanGame.getLevelFromInput();
+
+        // 验证选择的关卡是否正确
+        Assert.assertEquals(1, sokobanGame.iCurLevel); // 因为关卡索引是0基的，2-1=1
+    }
     
 
     //    测试玩家能否正常移到到空地
