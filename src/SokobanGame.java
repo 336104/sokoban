@@ -315,12 +315,24 @@ public class SokobanGame {
      * 选择关卡
      */
     public void getLevelFromInput() {
-        System.out.print("请输入要跳转的关卡：");
-        // 使用 nextDouble 读取输入
-        double Temp = scanner.nextDouble();
-        int toLevel = (int) Temp; // 将小数部分舍弃
-        // 调整输入关卡到从0开始的索引
-        selectLevel(toLevel - 1);
+        while (true) { // 持续循环直到输入有效
+            System.out.print("请输入要跳转的关卡：");
+            try {
+                double Temp = scanner.nextDouble();  // 读取输入
+                int toLevel = (int) Temp;            // 将小数部分舍弃
+                // 检查关卡范围
+                if (toLevel < 1 || toLevel > levels.length) {
+                    System.out.println("关卡范围为1~" + levels.length + "，请重新输入。");
+                    continue; // 继续循环以获取新的输入
+                }
+                // 调整输入关卡到从0开始的索引
+                selectLevel(toLevel - 1);
+                break; // 输入有效，跳出循环
+            } catch (InputMismatchException e) {
+                System.out.println("输入无效，请输入一个数字。");
+                scanner.next(); // 清空无效输入
+            }
+        }
     }
 
     /**
