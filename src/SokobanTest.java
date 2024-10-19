@@ -170,7 +170,7 @@ public class SokobanTest {
     }
      @Test
     public void testGetLevelFromInput8() {
-        // 模拟用户输入的第99关卡
+        // 模拟用户输入的第2关卡
         sokobanGame.scanner = new Scanner("2.5\n"); 
 
         // 调用 getLevelFromInput 方法
