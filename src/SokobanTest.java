@@ -3,6 +3,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
+import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class SokobanTest {
@@ -264,7 +265,7 @@ public class SokobanTest {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
         sokobanGame.selectLevel(2);
-        IntStream.range(0, 4).forEach(_ -> sokobanGame.go("right"));
+        IntStream.range(0, 4).forEach(a -> sokobanGame.go("right"));
         Assert.assertTrue(compareMap(expectMap, sokobanGame.curMap));
         Assert.assertEquals(3, sokobanGame.moveTimes);
     }
@@ -317,7 +318,7 @@ public class SokobanTest {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
         sokobanGame.selectLevel(0);
         sokobanGame.curMap[8][4] = 0;
-        IntStream.range(0, 8).forEach(_ -> sokobanGame.go("left"));
+        IntStream.range(0, 8).forEach(a -> sokobanGame.go("left"));
         Assert.assertTrue(compareMap(expectMap, sokobanGame.curMap));
         Assert.assertEquals(0, sokobanGame.moveTimes);
     }

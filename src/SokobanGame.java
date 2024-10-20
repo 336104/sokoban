@@ -369,7 +369,30 @@ public class SokobanGame {
                 break;
         }
     }
-
+    public void execute(Character action) {
+        switch (action) {
+            case 'a':
+                go("left");
+                break;
+            case 'w':
+                go("up");
+                break;
+            case 'd':
+                go("right");
+                break;
+            case 's':
+                go("down");
+                break;
+            case 'r':
+                repeal();
+                break;
+            case 'e':
+                getLevelFromInput();
+                break;
+            default:
+                break;
+        }
+    }
     public void showGameGuide() {
         System.out.println("\n\uD83D\uDC4B这是一个推箱子小游戏，游戏目标是将\uD83D\uDCE6推到⭐处。");
         System.out.println("\u001B[34ma\u001B[0m左移，\u001B[34md\u001B[0m右移，\u001B[34mw\u001B[0m上移，\u001B[34ms\u001B[0m下移，\u001B[34mr\u001B[0m撤销，\u001B[34me\u001B[0m选择关卡，\u001B[34mp\u001B[0m输出本条消息，\u001B[34mt\u001B[0m重新开始\n");
