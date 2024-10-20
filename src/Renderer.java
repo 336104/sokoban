@@ -95,7 +95,7 @@ public class Renderer {
     static class MultiImagePanel extends JPanel implements KeyListener {
         private List<BufferedImage> images;
         SokobanGame sokobanGame;
-        Character action;
+        Character action = 'n';
         Renderer renderer;
 
         public MultiImagePanel(Renderer renderer, SokobanGame sokobanGame, List<BufferedImage> images){
@@ -162,15 +162,19 @@ public class Renderer {
         public void keyPressed(KeyEvent e) {
             switch (e.getKeyCode()) {
                 case 37:
+                case 65:
                     action = 'w';
                     break;
                 case 39:
+                case 68:
                     action = 's';
                     break;
                 case 38:
+                case 87:
                     action = 'a';
                     break;
                 case 40:
+                case 83:
                     action = 'd';
             }
             sokobanGame.execute(action);
