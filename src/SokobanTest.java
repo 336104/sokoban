@@ -179,7 +179,17 @@ public class SokobanTest {
         // 验证选择的关卡是否正确
         Assert.assertEquals(1, sokobanGame.iCurLevel); 
     }
-    
+     @Test
+    public void testGetLevelFromInput9() {
+
+        sokobanGame.scanner = new Scanner("a\n2.5\n");
+
+        // 调用 getLevelFromInput 方法
+        sokobanGame.getLevelFromInput();
+
+        // 验证选择的关卡是否正确
+        Assert.assertEquals(1, sokobanGame.iCurLevel);
+    }
 
     //    测试玩家能否正常移到到空地
     @Test
