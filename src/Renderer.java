@@ -119,8 +119,8 @@ public class Renderer {
             for(int i = 0; i< 16; i++)
                 for(int j = 0; j< 16; j++){
                     BufferedImage currentImage = images.get(0);
-                    int x = i*35;
-                    int y = j*35;
+                    int x = j*35;
+                    int y = i*35;
                     g.drawImage(currentImage, x, y, currentImage.getWidth(), currentImage.getHeight(), null);
                 }
             //绘制物体
@@ -129,8 +129,8 @@ public class Renderer {
                     int index =curMap[i][j];
                     if(index != SPACE && index != PLAYER){
                         BufferedImage currentImage = images.get(index);
-                        int x = i*35;
-                        int y = j*35;
+                        int x = j*35;
+                        int y = i*35;
                         int width = currentImage.getWidth();
                         int height = currentImage.getHeight();
                         x = x - (width-35)/2;
@@ -145,8 +145,8 @@ public class Renderer {
                     int index =curMap[i][j];
                     if(index == PLAYER){
                         BufferedImage currentImage = images.get(index);
-                        int x = i*35;
-                        int y = j*35;
+                        int x = j*35;
+                        int y = i*35;
                         int width = currentImage.getWidth();
                         int height = currentImage.getHeight();
                         x = x - (width-35)/2;
@@ -161,20 +161,22 @@ public class Renderer {
         @Override
         public void keyPressed(KeyEvent e) {
             switch (e.getKeyCode()) {
-                case 37:
-                case 65:
-                    action = 'w';
-                    break;
-                case 39:
-                case 68:
-                    action = 's';
-                    break;
                 case 38:
                 case 87:
-                    action = 'a';
+                    action = 'w';
                     break;
                 case 40:
                 case 83:
+                    action = 's';
+                    break;
+                case 37:
+                case 65:
+
+                    action = 'a';
+                    break;
+                case 39:
+                case 68:
+
                     action = 'd';
             }
             sokobanGame.execute(action);
