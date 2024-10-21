@@ -106,24 +106,24 @@ public class SokobanGame {
     /**
      * 初始化游戏等级
      */
-    public int[][] copyArray(int[][] motoArray) {
-        int row = motoArray.length;
-        int column = motoArray[0].length;
-        int[][] res = new int[row][column];
-
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < column; j++) {
-                res[i][j] = motoArray[i][j];
-            }
-        }
-
-        return res;
-    }
+//    public int[][] copyArray(int[][] motoArray) {
+//        int row = motoArray.length;
+//        int column = motoArray[0].length;
+//        int[][] res = new int[row][column];
+//
+//        for (int i = 0; i < row; i++) {
+//            for (int j = 0; j < column; j++) {
+//                res[i][j] = motoArray[i][j];
+//            }
+//        }
+//
+//        return res;
+//    }
 
     public void initLevel() {
 
         //当前移动过的游戏地图
-        curMap = copyArray(levels[iCurLevel]);
+        curMap = levels[iCurLevel].clone();
         //当前等级的初始地图
         curLevel = levels[iCurLevel];
 
@@ -167,7 +167,7 @@ public class SokobanGame {
      * @param dir 移动方向
      */
     public void go(String dir) {
-        preMap = copyArray(curMap);
+        preMap = curMap.clone();
 
         Point p1 = null, p2 = null;
         switch (dir) {
@@ -231,7 +231,7 @@ public class SokobanGame {
         if (repeal != 0) {
             repeal = 0;
             moveTimes--;
-            curMap = copyArray(preMap);
+            curMap = preMap.clone();
             searchPosition(curMap);
             drawMap();
             showMoveInfo();
