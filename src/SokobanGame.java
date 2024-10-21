@@ -106,24 +106,24 @@ public class SokobanGame {
     /**
      * 初始化游戏等级
      */
-//    public int[][] copyArray(int[][] motoArray) {
-//        int row = motoArray.length;
-//        int column = motoArray[0].length;
-//        int[][] res = new int[row][column];
-//
-//        for (int i = 0; i < row; i++) {
-//            for (int j = 0; j < column; j++) {
-//                res[i][j] = motoArray[i][j];
-//            }
-//        }
-//
-//        return res;
-//    }
+    public int[][] copyArray(int[][] motoArray) {
+        int row = motoArray.length;
+        int column = motoArray[0].length;
+        int[][] res = new int[row][column];
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                res[i][j] = motoArray[i][j];
+            }
+        }
+
+        return res;
+    }
 
     public void initLevel() {
 
         //当前移动过的游戏地图
-        curMap = levels[iCurLevel].clone();
+        curMap = copyArray(levels[iCurLevel]);
         //当前等级的初始地图
         curLevel = levels[iCurLevel];
 
@@ -167,7 +167,7 @@ public class SokobanGame {
      * @param dir 移动方向
      */
     public void go(String dir) {
-        preMap = curMap.clone();
+        preMap = copyArray(curMap);
 
         Point p1 = null, p2 = null;
         switch (dir) {
@@ -231,7 +231,7 @@ public class SokobanGame {
         if (repeal != 0) {
             repeal = 0;
             moveTimes--;
-            curMap = preMap.clone();
+            curMap = copyArray(preMap);
             searchPosition(curMap);
             drawMap();
             showMoveInfo();
@@ -315,7 +315,7 @@ public class SokobanGame {
     /**
      * 选择关卡
      */
-     public void getLevelFromInput() {
+    public void getLevelFromInput() {
         while (true) { // 持续循环直到输入有效
             System.out.print("请输入要跳转的关卡：");
             try {
@@ -369,6 +369,7 @@ public class SokobanGame {
                 break;
         }
     }
+
     public void execute(Character action) {
         switch (action) {
             case 'a':
@@ -393,6 +394,7 @@ public class SokobanGame {
                 break;
         }
     }
+
     public void showGameGuide() {
         System.out.println("\n\uD83D\uDC4B这是一个推箱子小游戏，游戏目标是将\uD83D\uDCE6推到⭐处。");
         System.out.println("\u001B[34ma\u001B[0m左移，\u001B[34md\u001B[0m右移，\u001B[34mw\u001B[0m上移，\u001B[34ms\u001B[0m下移，\u001B[34mr\u001B[0m撤销，\u001B[34me\u001B[0m选择关卡，\u001B[34mp\u001B[0m输出本条消息，\u001B[34mt\u001B[0m重新开始\n");
