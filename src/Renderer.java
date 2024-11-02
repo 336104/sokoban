@@ -204,6 +204,7 @@ public class Renderer {
         private JLabel moveCountLabel;
         private JButton jumpButton;
         private JTextField levelToJumpTextField;
+        private JButton resetButton;
         private SokobanGame sokobanGame;
         private Renderer renderer;
 
@@ -217,6 +218,7 @@ public class Renderer {
             briefButton = new JButton("游戏说明");
             jumpButton = new JButton("跳转");
             levelToJumpTextField = new JTextField();
+            resetButton = new JButton("重置关卡");
 
             jumpButton.addActionListener(new ActionListener() {
                 @Override
@@ -262,6 +264,18 @@ public class Renderer {
                 }
             });
 
+            resetButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("重置关卡");
+                    sokobanGame.selectLevel(sokobanGame.iCurLevel);
+                    refresh();
+                    renderer.imagePanel.repaint();
+                    renderer.imagePanel.requestFocusInWindow();
+
+                }
+            });
+
             briefButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -269,6 +283,8 @@ public class Renderer {
                     renderer.imagePanel.requestFocusInWindow();
                 }
             });
+
+
 
 
             levelLabel = new JLabel("第"+(sokobanGame.iCurLevel+1)+"/100关");
@@ -279,12 +295,21 @@ public class Renderer {
 
             add(levelLabel);
             add(moveCountLabel);
-            add(jumpButton);
-            add(levelToJumpTextField);
+
+            JPanel jumpPanel = new JPanel();
+            jumpPanel.setLayout(new GridLayout(1, 2, 5, 5));
+            jumpPanel.add(jumpButton);
+            jumpPanel.add(levelToJumpTextField);
+            add(jumpPanel);
+
+//            add(jumpButton);
+//            add(levelToJumpTextField);
+            add(resetButton);
             add(previousButton);
             add(nextButton);
             add(repealButton);
             add(briefButton);
+
 
 
         }
