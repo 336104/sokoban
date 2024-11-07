@@ -65,6 +65,7 @@ public class Renderer {
         frame.add(imagePanel, BorderLayout.CENTER);
 
         uiPanel = new UIPanel(this, sokobanGame);
+        uiPanel.setName("uiPanel");
         frame.add(uiPanel, BorderLayout.SOUTH);
 
 
@@ -216,13 +217,19 @@ public class Renderer {
             this.renderer = renderer;
             this.sokobanGame = sokobanGame;
             previousButton = new JButton("上一关");
+            previousButton.setName("previousButton");
             nextButton = new JButton("下一关");
             nextButton.setName("nextButton");
             repealButton = new JButton("撤销");
+            repealButton.setName("repealButton");
             briefButton = new JButton("游戏说明");
+            briefButton.setName("briefButton");
             jumpButton = new JButton("跳转");
+            jumpButton.setName("jumpButton");
             levelToJumpTextField = new JTextField();
+            levelToJumpTextField.setName("levelToJumpTextField");
             resetButton = new JButton("重置关卡");
+            resetButton.setName("resetButton");
 
             jumpButton.addActionListener(new ActionListener() {
                 @Override

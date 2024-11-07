@@ -1,11 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/33610/projects/java&quot;
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b4900937-5c7d-422b-987a-1777c1f84075" name="更改" comment="test for load map" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "336104"
   }
-}</component>
-  <component name="RunManager" selected="应用程序.Renderer">
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/336104/sokoban.git",
+    "accountId": "7527a3ce-76cb-473c-b010-0fc22f5148b8"
+  }
+}]]></component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2oWBq5P2u2EP2glSfwfA1A7dxuX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.GUITest.demoTest.executor": "Run",
+    "JUnit.GUITest.testLoadMap.executor": "Run",
+    "JUnit.GUITest.testLoadMap2.executor": "Run",
+    "JUnit.GUITest.testLoadMap3.executor": "Run",
+    "JUnit.GUITest.testStart.executor": "Run",
+    "JUnit.SokobanTest.executor": "Run",
+    "Maven.sokoban [package].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/33610/projects/java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "项目",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true",
+    "应用程序.Renderer.executor": "Run"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\33610\projects\java\sokoban\src\main\resources\test_images" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.GUITest.testLoadMap3">
     <configuration name="Renderer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Renderer" />
       <module name="sokoban" />
@@ -13,11 +74,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GUITest.testCopyTextToLabel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GUITest.testLoadMap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sokoban" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="GUITest" />
-      <option name="METHOD_NAME" value="testCopyTextToLabel" />
+      <option name="METHOD_NAME" value="testLoadMap" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GUITest.testLoadMap2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sokoban" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GUITest" />
+      <option name="METHOD_NAME" value="testLoadMap2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GUITest.testLoadMap3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sokoban" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GUITest" />
+      <option name="METHOD_NAME" value="testLoadMap3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GUITest.testStart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sokoban" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GUITest" />
+      <option name="METHOD_NAME" value="testStart" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -25,9 +116,57 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GUITest.testLoadMap3" />
+        <item itemvalue="JUnit.GUITest.testLoadMap2" />
         <item itemvalue="应用程序.Renderer" />
-        <item itemvalue="JUnit.GUITest.testCopyTextToLabel" />
+        <item itemvalue="JUnit.GUITest.testLoadMap" />
+        <item itemvalue="JUnit.GUITest.testStart" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task id="LOCAL-00001" summary="delete useless files">
+      <option name="closed" value="true" />
+      <created>1730963915292</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730963915292</updated>
+    </task>
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="b4900937-5c7d-422b-987a-1777c1f84075" name="更改" comment="delete useless files" />
+      <created>1730975640166</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1730975640166</updated>
+      <workItem from="1730975641320" duration="4068000" />
+    </task>
+    <task id="LOCAL-00002" summary="test for load map">
+      <option name="closed" value="true" />
+      <created>1730979622017</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730979622017</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="delete useless files" />
+    <MESSAGE value="test for load map" />
+    <option name="LAST_COMMIT_MESSAGE" value="test for load map" />
   </component>
 </project>
