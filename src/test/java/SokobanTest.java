@@ -5,7 +5,6 @@ import org.junit.Test;
 import java.awt.*;
 import java.io.*;
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class SokobanTest {
     private SokobanGame sokobanGame;

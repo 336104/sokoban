@@ -1,7 +1,5 @@
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
@@ -68,7 +66,8 @@ public class SokobanGame {
 
     // 读取文件并将数据存入levels数组
     public static void loadMapsFromFile(String fileName, int numberOfMaps, int mapSize) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
+        BufferedReader br = new BufferedReader(new InputStreamReader(stream));
         String line;
         int mapIndex = -1; // 当前正在读取的地图索引
         int rowIndex = 0;  // 当前正在读取的行索引

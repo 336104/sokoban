@@ -2,9 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +18,15 @@ public class Renderer {
     private final SokobanGame sokobanGame;
     public JPanel imagePanel;
     public UIPanel uiPanel;
-    public Renderer(SokobanGame sokobanGame){
+    public JFrame frame;
+
+    public Renderer(SokobanGame sokobanGame) {
         this.sokobanGame = sokobanGame;
     }
 
-    public void init(){
+    public void init() {
         // 创建一个JFrame窗口
-        JFrame frame = new JFrame("Box");
+        frame = new JFrame("Box");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
@@ -35,18 +37,19 @@ public class Renderer {
         // 加载图片到内存
         List<BufferedImage> images = new ArrayList<>();
         String[] imagePaths = {
-                "src\\images\\block.gif",
-                "src\\images\\wall.png",
-                "src\\images\\ball.png",
-                "src\\images\\box.png",
-                "src\\images\\down.png",
-                "src\\images\\left.png",
-                "src\\images\\right.png",
-                "src\\images\\up.png"
+                "images/block.gif",
+                "images/wall.png",
+                "images/ball.png",
+                "images/box.png",
+                "images/down.png",
+                "images/left.png",
+                "images/right.png",
+                "images/up.png"
         };
         for (String path : imagePaths) {
             try {
-                BufferedImage image = ImageIO.read(new File(path));
+                InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
+                BufferedImage image = ImageIO.read(stream);
                 images.add(image);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -56,6 +59,7 @@ public class Renderer {
 
         // 创建一个自定义的JPanel来绘制图片
         imagePanel = new MultiImagePanel(this, sokobanGame, images);
+        imagePanel.setName("imagePanel");
 
         // 将JPanel添加到JFrame中
         frame.add(imagePanel, BorderLayout.CENTER);
@@ -71,14 +75,13 @@ public class Renderer {
     }
 
 
-
     public static void main(String[] args) {
         // 定义地图的大小（例如16x16的地图）
         int mapSize = 16;
         int numberOfMaps = 100;
 
         // 初始化levels数组，存储100个16x16的地图
-         SokobanGame.levels = new int[numberOfMaps][mapSize][mapSize];
+        SokobanGame.levels = new int[numberOfMaps][mapSize][mapSize];
 
         // 读取文件并解析
         try {
@@ -98,7 +101,7 @@ public class Renderer {
         Character action = 'n';
         Renderer renderer;
 
-        public MultiImagePanel(Renderer renderer, SokobanGame sokobanGame, List<BufferedImage> images){
+        public MultiImagePanel(Renderer renderer, SokobanGame sokobanGame, List<BufferedImage> images) {
             this.renderer = renderer;
             this.sokobanGame = sokobanGame;
             this.images = images;
@@ -116,41 +119,41 @@ public class Renderer {
 
             int[][] curMap = sokobanGame.curMap;
             //绘制背景
-            for(int i = 0; i< 16; i++)
-                for(int j = 0; j< 16; j++){
+            for (int i = 0; i < 16; i++)
+                for (int j = 0; j < 16; j++) {
                     BufferedImage currentImage = images.get(0);
-                    int x = j*35;
-                    int y = i*35;
+                    int x = j * 35;
+                    int y = i * 35;
                     g.drawImage(currentImage, x, y, currentImage.getWidth(), currentImage.getHeight(), null);
                 }
             //绘制物体
-            for(int i = 0; i< 16; i++)
-                for(int j = 0; j< 16; j++){
-                    int index =curMap[i][j];
-                    if(index != SPACE && index != PLAYER){
+            for (int i = 0; i < 16; i++)
+                for (int j = 0; j < 16; j++) {
+                    int index = curMap[i][j];
+                    if (index != SPACE && index != PLAYER) {
                         BufferedImage currentImage = images.get(index);
-                        int x = j*35;
-                        int y = i*35;
+                        int x = j * 35;
+                        int y = i * 35;
                         int width = currentImage.getWidth();
                         int height = currentImage.getHeight();
-                        x = x - (width-35)/2;
-                        y = y - (height-35);
+                        x = x - (width - 35) / 2;
+                        y = y - (height - 35);
                         g.drawImage(currentImage, x, y, width, height, null);
                     }
 
                 }
             //绘制人物
-            for(int i = 0; i< 16; i++)
-                for(int j = 0; j< 16; j++){
-                    int index =curMap[i][j];
-                    if(index == PLAYER){
+            for (int i = 0; i < 16; i++)
+                for (int j = 0; j < 16; j++) {
+                    int index = curMap[i][j];
+                    if (index == PLAYER) {
                         BufferedImage currentImage = images.get(index);
-                        int x = j*35;
-                        int y = i*35;
+                        int x = j * 35;
+                        int y = i * 35;
                         int width = currentImage.getWidth();
                         int height = currentImage.getHeight();
-                        x = x - (width-35)/2;
-                        y = y - (height-35);
+                        x = x - (width - 35) / 2;
+                        y = y - (height - 35);
                         g.drawImage(currentImage, x, y, width, height, null);
                         break;
                     }
@@ -193,7 +196,7 @@ public class Renderer {
         }
     }
 
-    static class UIPanel extends JPanel implements ActionListener{
+    static class UIPanel extends JPanel implements ActionListener {
 
 
         private JButton previousButton;
@@ -208,12 +211,13 @@ public class Renderer {
         private SokobanGame sokobanGame;
         private Renderer renderer;
 
-        public UIPanel(Renderer renderer, SokobanGame sokobanGame){
+        public UIPanel(Renderer renderer, SokobanGame sokobanGame) {
 
             this.renderer = renderer;
             this.sokobanGame = sokobanGame;
             previousButton = new JButton("上一关");
             nextButton = new JButton("下一关");
+            nextButton.setName("nextButton");
             repealButton = new JButton("撤销");
             briefButton = new JButton("游戏说明");
             jumpButton = new JButton("跳转");
@@ -225,7 +229,7 @@ public class Renderer {
                 public void actionPerformed(ActionEvent e) {
                     String text = levelToJumpTextField.getText();
                     int level = Integer.parseInt(text);
-                    sokobanGame.selectLevel(level-1);
+                    sokobanGame.selectLevel(level - 1);
                     refresh();
                     renderer.imagePanel.repaint();
                     renderer.imagePanel.requestFocusInWindow();
@@ -247,7 +251,7 @@ public class Renderer {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     System.out.println("上一关");
-                    sokobanGame.selectLevel(sokobanGame.iCurLevel-1);
+                    sokobanGame.selectLevel(sokobanGame.iCurLevel - 1);
                     refresh();
                     renderer.imagePanel.repaint();
                     renderer.imagePanel.requestFocusInWindow();
@@ -257,7 +261,7 @@ public class Renderer {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     System.out.println("下一关");
-                    sokobanGame.selectLevel(sokobanGame.iCurLevel+1);
+                    sokobanGame.selectLevel(sokobanGame.iCurLevel + 1);
                     refresh();
                     renderer.imagePanel.repaint();
                     renderer.imagePanel.requestFocusInWindow();
@@ -285,10 +289,8 @@ public class Renderer {
             });
 
 
-
-
-            levelLabel = new JLabel("第"+(sokobanGame.iCurLevel+1)+"/100关");
-            moveCountLabel = new JLabel("移动次数："+sokobanGame.moveTimes);
+            levelLabel = new JLabel("第" + (sokobanGame.iCurLevel + 1) + "/100关");
+            moveCountLabel = new JLabel("移动次数：" + sokobanGame.moveTimes);
 
 
             setLayout(new GridLayout(2, 4, 5, 5));
@@ -311,16 +313,16 @@ public class Renderer {
             add(briefButton);
 
 
-
         }
+
         @Override
         public void actionPerformed(ActionEvent e) {
 
         }
 
-        public void refresh(){
-            levelLabel.setText("第"+(sokobanGame.iCurLevel+1)+"/100关");
-            moveCountLabel.setText("移动次数："+sokobanGame.moveTimes);
+        public void refresh() {
+            levelLabel.setText("第" + (sokobanGame.iCurLevel + 1) + "/100关");
+            moveCountLabel.setText("移动次数：" + sokobanGame.moveTimes);
         }
     }
 
