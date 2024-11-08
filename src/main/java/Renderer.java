@@ -298,7 +298,7 @@ public class Renderer {
 
             levelLabel = new JLabel("第" + (sokobanGame.iCurLevel + 1) + "/100关");
             moveCountLabel = new JLabel("移动次数：" + sokobanGame.moveTimes);
-
+            moveCountLabel.setName("moveCountLabel");
 
             setLayout(new GridLayout(2, 4, 5, 5));
 
