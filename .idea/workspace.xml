@@ -1,19 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="sokoban:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4900937-5c7d-422b-987a-1777c1f84075" name="更改" comment="test for load map" />
+    <list default="true" id="b4900937-5c7d-422b-987a-1777c1f84075" name="更改" comment="test for load map">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/sokoban_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/artifacts/sokoban_jar/sokoban.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SokobanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SokobanGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GUITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GUITest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="sokoban/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <branch-grouping />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="xzc" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -24,12 +49,12 @@
     &quot;assignee&quot;: &quot;336104&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/336104/sokoban.git",
-    "accountId": "96d75e86-c26e-41cf-bdec-acddc91a3ba0"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/336104/sokoban.git&quot;,
+    &quot;accountId&quot;: &quot;96d75e86-c26e-41cf-bdec-acddc91a3ba0&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
   </component>
@@ -42,32 +67,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.GUITest.demoTest.executor": "Run",
-    "JUnit.GUITest.testLoadMap.executor": "Run",
-    "JUnit.GUITest.testLoadMap2.executor": "Run",
-    "JUnit.GUITest.testLoadMap3.executor": "Run",
-    "JUnit.GUITest.testStart.executor": "Run",
-    "JUnit.SokobanTest.executor": "Run",
-    "Maven.sokoban [package].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "xzc",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/33610/projects/java",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "项目",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true",
-    "应用程序.Renderer.executor": "Run",
-    "应用程序.SokobanGame.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.GUITest.demoTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GUITest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GUITest.testLoadMap.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GUITest.testLoadMap2.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GUITest.testLoadMap3.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GUITest.testStart.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SokobanTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sokoban [package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;xzc&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/33610/projects/java&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;应用程序.Renderer.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.SokobanGame.executor&quot;: &quot;Run&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\33610\projects\java\sokoban\src\main\resources\test_images" />
@@ -88,12 +115,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GUITest.testLoadMap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GUITest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sokoban" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="GUITest" />
-      <option name="METHOD_NAME" value="testLoadMap" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -122,9 +148,9 @@
       <list>
         <item itemvalue="应用程序.Renderer" />
         <item itemvalue="应用程序.SokobanGame" />
+        <item itemvalue="JUnit.GUITest" />
         <item itemvalue="JUnit.GUITest.testLoadMap3" />
         <item itemvalue="JUnit.GUITest.testLoadMap2" />
-        <item itemvalue="JUnit.GUITest.testLoadMap" />
       </list>
     </recent_temporary>
   </component>
@@ -153,7 +179,12 @@
       <option name="presentableId" value="Default" />
       <updated>1730975640166</updated>
       <workItem from="1730975641320" duration="4068000" />
-      <workItem from="1731055263105" duration="14254000" />
+      <workItem from="1731055263105" duration="15194000" />
+      <workItem from="1731071356313" duration="1128000" />
+      <workItem from="1731072497910" duration="879000" />
+      <workItem from="1731073403031" duration="1000" />
+      <workItem from="1731073410313" duration="13000" />
+      <workItem from="1731073745184" duration="143000" />
     </task>
     <task id="LOCAL-00002" summary="test for load map">
       <option name="closed" value="true" />
@@ -171,11 +202,62 @@
       <option name="project" value="LOCAL" />
       <updated>1731069924136</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="test for load map">
+      <option name="closed" value="true" />
+      <created>1731070114494</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731070114494</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="sokoban/master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="sokoban/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="delete useless files" />

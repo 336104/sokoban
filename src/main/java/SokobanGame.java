@@ -212,6 +212,8 @@ public class SokobanGame {
             if(checkBox()){
                 is_lost = true;
                 System.out.println("游戏已失败，请重置或跳转关卡！");
+            }else{
+                is_lost = false;
             }
             if (moveTimes == maxSteps) {
                 System.out.println("ゲームオーバー");
@@ -239,6 +241,7 @@ public class SokobanGame {
         if (repeal != 0) {
             repeal = 0;
             moveTimes--;
+            is_lost = checkBox();
             curMap = copyArray(preMap);
             searchPosition(curMap);
             drawMap();
@@ -271,12 +274,16 @@ public class SokobanGame {
         }
         return true;
     }
-    // 使用DFS检测图中是否存在环
+
+    /**
+     * 使用DFS检测图中是否存在环
+     *
+     * @return true 发现环 false 无环
+     */
     public static boolean hasCycle(Map<Integer, List<Integer>> graph) {
         // 记录节点的访问状态：1 - 正在访问，2 - 已访问
         Map<Integer, Integer> visitStatus = new HashMap<>();
-        // 对图中的每个节点进行DFS遍历
-        for (Integer node : graph.keySet()) {
+        for (Integer node : graph.keySet()) { // 对图中的每个节点进行DFS遍历
             if (!visitStatus.containsKey(node)) {
                 if (dfs(graph, visitStatus, node)) {
                     return true; // 发现环
@@ -286,20 +293,21 @@ public class SokobanGame {
 
         return false; // 未发现环
     }
-
-    // 深度优先搜索辅助函数
+    /**
+     * 深度优先搜索辅助函数
+     *
+     * @return true 发现环 false 无环
+     */
     private static boolean dfs(Map<Integer, List<Integer>> graph, Map<Integer, Integer> visitStatus, int currentNode) {
         // 标记当前节点为正在访问
         visitStatus.put(currentNode, 1);
         // 遍历当前节点的所有邻居节点
         for (Integer neighbor : graph.getOrDefault(currentNode, Collections.emptyList())) {
-            if (!visitStatus.containsKey(neighbor)) {
-                // 如果邻居节点未访问过，则继续DFS
+            if (!visitStatus.containsKey(neighbor)) { // 如果邻居节点未访问过，则继续DFS
                 if (dfs(graph, visitStatus, neighbor)) {
                     return true; // 发现环
                 }
-            } else if (visitStatus.get(neighbor) == 1) {
-                // 如果邻居节点正在被访问，则发现环
+            } else if (visitStatus.get(neighbor) == 1) { // 如果邻居节点正在被访问，则发现环
                 return true;
             }
         }
@@ -338,7 +346,7 @@ public class SokobanGame {
         for (Integer p : box_pos.keySet()) {
             int i=p/100, j=p-100*i;
             if (curLevel[i][j] != GOAL && curMap[i][j] == BOX) {
-                Boolean up=false, down=false, left=false, right=false;
+                boolean up=false, down=false, left=false, right=false;
                 if(i==0 || curMap[i-1][j] == WALL||curMap[i-1][j] == BOX) { up=true;}
                 if(i==curMap.length-1 || curMap[i+1][j] == WALL || curMap[i+1][j] == BOX) { down=true; }
                 if(j==0 || curMap[i][j-1] == WALL || curMap[i][j-1] == BOX) { left=true; }

@@ -1,17 +1,14 @@
 import org.assertj.swing.fixture.FrameFixture;
-import org.bytedeco.javacv.Java2DFrameUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.bytedeco.opencv.opencv_core.Mat;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
