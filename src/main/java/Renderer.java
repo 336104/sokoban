@@ -296,7 +296,7 @@ public class Renderer {
             });
 
 
-            levelLabel = new JLabel("第" + (sokobanGame.iCurLevel + 1) + "/100关");
+            levelLabel = new JLabel("第" + (sokobanGame.iCurLevel + 1) + "/100关  Continue!");
             moveCountLabel = new JLabel("移动次数：" + sokobanGame.moveTimes);
 
 
@@ -311,8 +311,6 @@ public class Renderer {
             jumpPanel.add(levelToJumpTextField);
             add(jumpPanel);
 
-//            add(jumpButton);
-//            add(levelToJumpTextField);
             add(resetButton);
             add(previousButton);
             add(nextButton);
@@ -328,7 +326,13 @@ public class Renderer {
         }
 
         public void refresh() {
-            levelLabel.setText("第" + (sokobanGame.iCurLevel + 1) + "/100关");
+
+            if (sokobanGame.is_lost) {
+                levelLabel.setText("第" + (sokobanGame.iCurLevel + 1) + "/100关 Game Over!!!");
+            }
+            else{
+                levelLabel.setText("第" + (sokobanGame.iCurLevel + 1) + "/100关  Continue!");
+            }
             moveCountLabel.setText("移动次数：" + sokobanGame.moveTimes);
         }
     }

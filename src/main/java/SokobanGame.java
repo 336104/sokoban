@@ -1,8 +1,7 @@
 import java.awt.*;
 import java.io.*;
-import java.util.InputMismatchException;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.List;
 
 /**
  * @author 310
@@ -37,6 +36,10 @@ public class SokobanGame {
      * 最大移动次数
      */
     public final int maxSteps = 100;
+    /**
+     * 游戏是否已失败
+     */
+    public boolean is_lost = false;
 
     public static final int SPACE = 0;
     public static final int WALL = 1;
@@ -129,6 +132,8 @@ public class SokobanGame {
         searchPosition(curLevel);
         //游戏关卡移动步数清零
         moveTimes = 0;
+        //游戏是否失败置为false
+        is_lost = false;
     }
 
     /**
@@ -204,6 +209,10 @@ public class SokobanGame {
                 System.out.println("恭喜过关！！");
                 selectLevel(iCurLevel + 1);
             }
+            if(checkBox()){
+                is_lost = true;
+                System.out.println("游戏已失败，请重置或跳转关卡！");
+            }
             if (moveTimes == maxSteps) {
                 System.out.println("ゲームオーバー");
                 selectLevel(iCurLevel);
@@ -262,7 +271,101 @@ public class SokobanGame {
         }
         return true;
     }
+    // 使用DFS检测图中是否存在环
+    public static boolean hasCycle(Map<Integer, List<Integer>> graph) {
+        // 记录节点的访问状态：1 - 正在访问，2 - 已访问
+        Map<Integer, Integer> visitStatus = new HashMap<>();
+        // 对图中的每个节点进行DFS遍历
+        for (Integer node : graph.keySet()) {
+            if (!visitStatus.containsKey(node)) {
+                if (dfs(graph, visitStatus, node)) {
+                    return true; // 发现环
+                }
+            }
+        }
 
+        return false; // 未发现环
+    }
+
+    // 深度优先搜索辅助函数
+    private static boolean dfs(Map<Integer, List<Integer>> graph, Map<Integer, Integer> visitStatus, int currentNode) {
+        // 标记当前节点为正在访问
+        visitStatus.put(currentNode, 1);
+        // 遍历当前节点的所有邻居节点
+        for (Integer neighbor : graph.getOrDefault(currentNode, Collections.emptyList())) {
+            if (!visitStatus.containsKey(neighbor)) {
+                // 如果邻居节点未访问过，则继续DFS
+                if (dfs(graph, visitStatus, neighbor)) {
+                    return true; // 发现环
+                }
+            } else if (visitStatus.get(neighbor) == 1) {
+                // 如果邻居节点正在被访问，则发现环
+                return true;
+            }
+        }
+        // 标记当前节点为已访问
+        visitStatus.put(currentNode, 2);
+        return false; // 未发现环
+    }
+    /**
+     * 判断游戏是否已经失败，即箱子无法移动且不在目标点上
+     *
+     * @return true已经失败  false 推失败
+     */
+    public boolean checkBox() {
+        Map<Integer, Integer> box_pos =new HashMap<>();
+        Map<Integer, List<Integer>> graph=new HashMap<>();
+        int start=0;
+        for (int i = 0; i < curMap.length; i++) {
+            for (int j = 0; j < curMap[i].length; j++) {
+                //当前移动过的地图和初始地图进行比较，若果初始地图上的陷进参数在移动之后不是箱子的话就指代没推成功
+                if (curLevel[i][j] != GOAL && curMap[i][j] == BOX) {
+                    boolean up=false, down=false, left=false, right=false;
+                    if(i==0 || curMap[i-1][j] == WALL) { up=true; }
+                    if(i==curMap.length-1 || curMap[i+1][j] == WALL ) { down=true; }
+                    if(j==0 || curMap[i][j-1] == WALL) { left=true; }
+                    if(j==curMap[i].length-1 || curMap[i][j+1] == WALL) { right=true; }
+                    if((up||down)&&(left||right)) {
+                        return true;
+                    }
+                    else{
+                        box_pos.put(100*i+j, start);
+                        graph.put(start++,new ArrayList<>());
+                    }
+                }
+            }
+        }
+        for (Integer p : box_pos.keySet()) {
+            int i=p/100, j=p-100*i;
+            if (curLevel[i][j] != GOAL && curMap[i][j] == BOX) {
+                Boolean up=false, down=false, left=false, right=false;
+                if(i==0 || curMap[i-1][j] == WALL||curMap[i-1][j] == BOX) { up=true;}
+                if(i==curMap.length-1 || curMap[i+1][j] == WALL || curMap[i+1][j] == BOX) { down=true; }
+                if(j==0 || curMap[i][j-1] == WALL || curMap[i][j-1] == BOX) { left=true; }
+                if(j==curMap[i].length-1 || curMap[i][j+1] == WALL || curMap[i][j+1] == BOX) { right=true; }
+                if((up||down)&&(left||right)) {
+                    if(i!=0 && curMap[i-1][j] == BOX){
+                        graph.get(box_pos.get(p)).add(box_pos.get(100*(i-1)+j));
+                    }
+                    if(i!=curMap.length-1 && curMap[i+1][j] == BOX){
+                        graph.get(box_pos.get(p)).add(box_pos.get(100*(i+1)+j));
+                    }
+                    if(j!=0 && curMap[i][j-1] == BOX){
+                        graph.get(box_pos.get(p)).add(box_pos.get(100*i+j-1));
+                    }
+                    if(j!=curMap[i].length-1 && curMap[i][j+1] == BOX){
+                        graph.get(box_pos.get(p)).add(box_pos.get(100*i+j+1));
+                    }
+                }
+            }
+        }
+        if (hasCycle(graph)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     /**
      * 判断小人是否能够移动
