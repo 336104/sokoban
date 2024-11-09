@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4900937-5c7d-422b-987a-1777c1f84075" name="更改" comment="test for load map">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test_images/testLoadMap1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test_images/testLoadMap2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test_images/testLoadMap3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/GUITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GUITest.java" afterDir="false" />
-    </list>
+    <list default="true" id="b4900937-5c7d-422b-987a-1777c1f84075" name="更改" comment="test for move" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,6 +28,9 @@
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -46,6 +42,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.GUITest.demoTest.executor": "Run",
+    "JUnit.GUITest.testBoxMove1.executor": "Run",
+    "JUnit.GUITest.testBoxMove2.executor": "Run",
+    "JUnit.GUITest.testBoxMove3.executor": "Run",
     "JUnit.GUITest.testLoadMap.executor": "Run",
     "JUnit.GUITest.testLoadMap1.executor": "Run",
     "JUnit.GUITest.testLoadMap2.executor": "Run",
@@ -61,7 +60,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/33610/projects/java",
+    "last_opened_file_path": "C:/Users/33610/projects/java/sokoban/src/main/resources/test_images",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -74,6 +73,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\33610\projects\java\sokoban\src\main\resources\test_images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\33610\projects\java\sokoban\src\main\resources\test_images" />
     </key>
@@ -161,7 +163,7 @@
       <option name="presentableId" value="Default" />
       <updated>1730975640166</updated>
       <workItem from="1730975641320" duration="5288000" />
-      <workItem from="1731026740871" duration="4124000" />
+      <workItem from="1731026740871" duration="4582000" />
     </task>
     <task id="LOCAL-00002" summary="test for load map">
       <option name="closed" value="true" />
@@ -179,7 +181,23 @@
       <option name="project" value="LOCAL" />
       <updated>1730979764152</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="test for move">
+      <option name="closed" value="true" />
+      <created>1731031200032</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731031200032</updated>
+    </task>
+    <task id="LOCAL-00005" summary="test for move">
+      <option name="closed" value="true" />
+      <created>1731031324067</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1731031324067</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +206,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="delete useless files" />
     <MESSAGE value="test for load map" />
-    <option name="LAST_COMMIT_MESSAGE" value="test for load map" />
+    <MESSAGE value="test for move" />
+    <option name="LAST_COMMIT_MESSAGE" value="test for move" />
   </component>
 </project>

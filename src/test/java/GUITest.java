@@ -210,7 +210,7 @@ public class GUITest {
         Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
 
         frame.label("moveCountLabel").requireText("移动次数：0");
-        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+        Assert.assertTrue(compare(expectedScreenShot, currentScreenShot) > 0.9);
     }
 
     @Test
@@ -227,7 +227,7 @@ public class GUITest {
         Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
 
         frame.label("moveCountLabel").requireText("移动次数：0");
-        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+        Assert.assertTrue(compare(expectedScreenShot, currentScreenShot) > 0.9);
     }
 
     @Test
@@ -249,7 +249,7 @@ public class GUITest {
         Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
 
         frame.label("moveCountLabel").requireText("移动次数：97");
-        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+        Assert.assertTrue(compare(expectedScreenShot, currentScreenShot) > 0.9);
     }
 
     @Test
@@ -272,7 +272,7 @@ public class GUITest {
         Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
 
         frame.label("moveCountLabel").requireText("移动次数：98");
-        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+        Assert.assertTrue(compare(expectedScreenShot, currentScreenShot) > 0.9);
     }
 
     @Test
@@ -295,7 +295,7 @@ public class GUITest {
         Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
 
         frame.label("moveCountLabel").requireText("移动次数：48");
-        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+        Assert.assertTrue(compare(expectedScreenShot, currentScreenShot) > 0.9);
     }
 
     @Test
@@ -313,7 +313,7 @@ public class GUITest {
         Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
 
         frame.label("moveCountLabel").requireText("移动次数：0");
-        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+        Assert.assertTrue(compare(expectedScreenShot, currentScreenShot) > 0.9);
     }
     @Test
     public void testUndo7() throws AWTException, IOException {
@@ -331,7 +331,7 @@ public class GUITest {
         Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
 
         frame.label("moveCountLabel").requireText("移动次数：1");
-        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+        Assert.assertTrue(compare(expectedScreenShot, currentScreenShot) > 0.9);
     }
 
     @Test
@@ -350,7 +350,7 @@ public class GUITest {
 //        writeImageFile(repealScreenShot, "p2.png");
 
         frame.label("moveCountLabel").requireText("移动次数：0");
-        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+        Assert.assertTrue(compare(expectedScreenShot, currentScreenShot) > 0.9);
     }
 
     @Test
@@ -368,7 +368,7 @@ public class GUITest {
         Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
 
         frame.label("moveCountLabel").requireText("移动次数：0");
-        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+        Assert.assertTrue(compare(expectedScreenShot, currentScreenShot) > 0.9);
     }
 
     @Test
@@ -394,7 +394,7 @@ public class GUITest {
         Mat currentScreenShot = Java2DFrameUtils.toMat(overScreenShot);
 
         frame.label("moveCountLabel").requireText("移动次数：0");
-        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+        Assert.assertTrue(compare(expectedScreenShot, currentScreenShot) > 0.9);
     }
 
     @Test
