@@ -10,8 +10,10 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -125,4 +127,256 @@ public class GUITest {
 
         return maxVal[0];
     }
+
+    @Test
+    public void testUndo1() throws AWTException, IOException {
+        JPanel imagePanel = frame.panel("imagePanel").target();
+        Point location = imagePanel.getLocationOnScreen();
+        Rectangle bounds = imagePanel.getBounds();
+        Robot robot = new Robot();
+        BufferedImage bScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat expectedScreenShot = Java2DFrameUtils.toMat(bScreenShot);
+        frame.button("repealButton").click();
+        BufferedImage repealScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
+
+        frame.label("moveCountLabel").requireText("移动次数：0");
+        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+    }
+
+    @Test
+    public void testUndo2() throws AWTException, IOException {
+        JPanel imagePanel = frame.panel("imagePanel").target();
+        Point location = imagePanel.getLocationOnScreen();
+        Rectangle bounds = imagePanel.getBounds();
+        Robot robot = new Robot();
+        BufferedImage bScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat expectedScreenShot = Java2DFrameUtils.toMat(bScreenShot);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+        frame.button("repealButton").click();
+        BufferedImage repealScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
+
+        frame.label("moveCountLabel").requireText("移动次数：0");
+        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+    }
+
+    @Test
+    public void testUndo3() throws AWTException, IOException {
+        JPanel imagePanel = frame.panel("imagePanel").target();
+        Point location = imagePanel.getLocationOnScreen();
+        Rectangle bounds = imagePanel.getBounds();
+        for (int i=1; 2*i<=96; i++) {
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+        }
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+        Robot robot = new Robot();
+        BufferedImage bScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat expectedScreenShot = Java2DFrameUtils.toMat(bScreenShot);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+        frame.button("repealButton").click();
+        BufferedImage repealScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
+
+        frame.label("moveCountLabel").requireText("移动次数：97");
+        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+    }
+
+    @Test
+    public void testUndo4() throws AWTException, IOException {
+        JPanel imagePanel = frame.panel("imagePanel").target();
+        Point location = imagePanel.getLocationOnScreen();
+        Rectangle bounds = imagePanel.getBounds();
+        for (int i=1; 2*i<=96; i++) {
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+        }
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+        Robot robot = new Robot();
+        BufferedImage bScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat expectedScreenShot = Java2DFrameUtils.toMat(bScreenShot);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+        frame.button("repealButton").click();
+        BufferedImage repealScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
+
+        frame.label("moveCountLabel").requireText("移动次数：98");
+        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+    }
+
+    @Test
+    public void testUndo5() throws AWTException, IOException {
+        JPanel imagePanel = frame.panel("imagePanel").target();
+        Point location = imagePanel.getLocationOnScreen();
+        Rectangle bounds = imagePanel.getBounds();
+        for (int i=1; 2*i<=46; i++) {
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+        }
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+        Robot robot = new Robot();
+        BufferedImage bScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat expectedScreenShot = Java2DFrameUtils.toMat(bScreenShot);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+        frame.button("repealButton").click();
+        BufferedImage repealScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
+
+        frame.label("moveCountLabel").requireText("移动次数：48");
+        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+    }
+
+    @Test
+    public void testUndo6() throws AWTException, IOException {
+        JPanel imagePanel = frame.panel("imagePanel").target();
+        Point location = imagePanel.getLocationOnScreen();
+        Rectangle bounds = imagePanel.getBounds();
+        Robot robot = new Robot();
+        BufferedImage bScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat expectedScreenShot = Java2DFrameUtils.toMat(bScreenShot);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+        frame.button("repealButton").click();
+        BufferedImage repealScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
+
+        frame.label("moveCountLabel").requireText("移动次数：0");
+        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+    }
+    @Test
+    public void testUndo7() throws AWTException, IOException {
+        JPanel imagePanel = frame.panel("imagePanel").target();
+        Point location = imagePanel.getLocationOnScreen();
+        Rectangle bounds = imagePanel.getBounds();
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+        Robot robot = new Robot();
+        BufferedImage bScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat expectedScreenShot = Java2DFrameUtils.toMat(bScreenShot);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+        frame.button("repealButton").click();
+        frame.button("repealButton").click();
+        BufferedImage repealScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
+
+        frame.label("moveCountLabel").requireText("移动次数：1");
+        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+    }
+
+    @Test
+    public void testUndo8() throws AWTException, IOException {
+        JPanel imagePanel = frame.panel("imagePanel").target();
+        Point location = imagePanel.getLocationOnScreen();
+        Rectangle bounds = imagePanel.getBounds();
+        Robot robot = new Robot();
+        BufferedImage bScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat expectedScreenShot = Java2DFrameUtils.toMat(bScreenShot);
+//        writeImageFile(bScreenShot, "p1.png");
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+        frame.button("repealButton").click();
+        BufferedImage repealScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
+//        writeImageFile(repealScreenShot, "p2.png");
+
+        frame.label("moveCountLabel").requireText("移动次数：0");
+        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+    }
+
+    @Test
+    public void testUndo9() throws AWTException, IOException {
+        JPanel imagePanel = frame.panel("imagePanel").target();
+        Point location = imagePanel.getLocationOnScreen();
+        Rectangle bounds = imagePanel.getBounds();
+        Robot robot = new Robot();
+        BufferedImage bScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat expectedScreenShot = Java2DFrameUtils.toMat(bScreenShot);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+        frame.button("repealButton").click();
+        BufferedImage repealScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat currentScreenShot = Java2DFrameUtils.toMat(repealScreenShot);
+
+        frame.label("moveCountLabel").requireText("移动次数：0");
+        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+    }
+
+    @Test
+    public void testMaxStepCheck1() throws AWTException, IOException {
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+
+        frame.label("moveCountLabel").requireText("移动次数：1");
+    }
+
+    @Test
+    public void testMaxStepCheck2() throws AWTException, IOException {
+        JPanel imagePanel = frame.panel("imagePanel").target();
+        Point location = imagePanel.getLocationOnScreen();
+        Rectangle bounds = imagePanel.getBounds();
+        Robot robot = new Robot();
+        BufferedImage bScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat expectedScreenShot = Java2DFrameUtils.toMat(bScreenShot);
+        for (int i=1; 2*i<=100; i++) {
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+        }
+        BufferedImage overScreenShot = robot.createScreenCapture(new Rectangle(location.x, location.y, bounds.width, bounds.height));
+        Mat currentScreenShot = Java2DFrameUtils.toMat(overScreenShot);
+
+        frame.label("moveCountLabel").requireText("移动次数：0");
+        Assert.assertTrue(ssim(expectedScreenShot, currentScreenShot) > 0.9);
+    }
+
+    @Test
+    public void testMaxStepCheck3() throws AWTException, IOException {
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_LEFT);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_LEFT);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_RIGHT);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_UP);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_DOWN);
+        for (int i=1; 2*i<=90; i++) {
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_RIGHT);
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_LEFT);
+        }
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_RIGHT);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_RIGHT);
+
+        frame.label("levelLabel").requireText("第2/100关");
+        frame.label("moveCountLabel").requireText("移动次数：0");
+    }
+    @Test
+    public void testMaxStepCheck4() throws AWTException, IOException {
+        frame.textBox("levelToJumpTextField").enterText("2");
+        frame.button("jumpButton").click();
+
+        for (int i=1; 2*i<=48; i++) {
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_RIGHT);
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_LEFT);
+        }
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_RIGHT);
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_LEFT);
+        frame.label("moveCountLabel").requireText("移动次数：50");
+    }
+    @Test
+    public void testMaxStepCheck5() throws AWTException, IOException {
+        frame.textBox("levelToJumpTextField").enterText("100");
+        frame.button("jumpButton").click();
+
+        for (int i=1; 2*i<=98; i++) {
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_RIGHT);
+            frame.panel("imagePanel").pressKey(KeyEvent.VK_LEFT);
+        }
+        frame.panel("imagePanel").pressKey(KeyEvent.VK_RIGHT);
+        frame.label("moveCountLabel").requireText("移动次数：99");
+    }
+
+    public void writeImageFile(BufferedImage bi, String fileName) throws IOException {
+        File outputfile = new File("D:/"+fileName);
+        ImageIO.write(bi, "png", outputfile);
+    }
+
 }
