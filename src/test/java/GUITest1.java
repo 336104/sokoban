@@ -312,6 +312,23 @@ public class GUITest {
         frame.label("levelLabel").requireText("第100/100关");
 
     }
+ @Test
+    public void testWin2() {
+        frame.textBox("levelToJumpTextField").enterText("50");
+        frame.button("jumpButton").click();
+
+        sokobanGame.moveBoxesToGoals();
+        frame.button("resetButton").click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // 断言当前关卡是否跳转到指定的关卡
+        frame.label("levelLabel").requireText("第51/100关");
+
+    }
+    
     @Test
     public void testStart() {
         frame.panel("imagePanel").requireVisible();
