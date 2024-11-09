@@ -316,6 +316,78 @@ public class SokobanGame {
         return false; // 未发现环
     }
     /**
+     * 检测边界行是否封闭，若封闭则游戏已经失败
+     *
+     * @return true 封闭 false 不封闭
+     */
+    public boolean checkLow(int i, int j, int add){
+        int front=0,back=curMap[i].length-1;
+        for(int k=j-1;k>=0;k--){
+            if(curMap[i][k] == WALL){
+                front=k;
+                break;
+            }
+            else if(curMap[i+add][k] != WALL){
+                return false;
+            }
+        }
+        for(int k=j+1;k<curMap[i].length;k++){
+            if(curMap[i][k] == WALL){
+                back=k;
+                break;
+            }
+            else if(curMap[i+add][k] != WALL){
+                return false;
+            }
+        }
+        int goals=0,boxs=0;
+        for(int k=front;k<=back;k++){
+            if(curMap[i][k] == BOX){
+                boxs++;
+            }
+            if(curLevel[i][k] == GOAL){
+                goals++;
+            }
+        }
+        return goals < boxs;
+    };
+    /**
+     * 检测边界列是否封闭，若封闭则游戏已经失败
+     *
+     * @return true 封闭 false 不封闭
+     */
+    public boolean checkCol(int i, int j, int add){
+        int front=0,back=curMap.length-1;
+        for(int k=i-1;k>=0;k--){
+            if(curMap[k][j] == WALL){
+                front=k;
+                break;
+            }
+            else if(curMap[k][j+add] != WALL){
+                return false;
+            }
+        }
+        for(int k=i+1;k<curMap.length;k++){
+            if(curMap[k][j] == WALL){
+                back=k;
+                break;
+            }
+            else if(curMap[k][j+add] != WALL){
+                return false;
+            }
+        }
+        int goals=0, boxs=0;
+        for(int k=front;k<=back;k++){
+            if(curMap[k][j] == BOX){
+                boxs++;
+            }
+            if(curLevel[k][j] == GOAL){
+                goals++;
+            }
+        }
+        return goals < boxs;
+    };
+    /**
      * 判断游戏是否已经失败，即箱子无法移动且不在目标点上
      *
      * @return true已经失败  false 推失败
@@ -329,10 +401,30 @@ public class SokobanGame {
                 //当前移动过的地图和初始地图进行比较，若果初始地图上的陷进参数在移动之后不是箱子的话就指代没推成功
                 if (curLevel[i][j] != GOAL && curMap[i][j] == BOX) {
                     boolean up=false, down=false, left=false, right=false;
-                    if(i==0 || curMap[i-1][j] == WALL) { up=true; }
-                    if(i==curMap.length-1 || curMap[i+1][j] == WALL ) { down=true; }
-                    if(j==0 || curMap[i][j-1] == WALL) { left=true; }
-                    if(j==curMap[i].length-1 || curMap[i][j+1] == WALL) { right=true; }
+                    if(curMap[i+1][j] == WALL) {
+                        up=true;
+                        if (checkLow(i,j,1)){
+                            return true;
+                        }
+                    }
+                    if(curMap[i-1][j] == WALL ) {
+                        down=true;
+                        if (checkLow(i,j,-1)){
+                            return true;
+                        }
+                    }
+                    if(curMap[i][j-1] == WALL) {
+                        left=true;
+                        if (checkCol(i,j,-1)){
+                            return true;
+                        }
+                    }
+                    if(curMap[i][j+1] == WALL) {
+                        right=true;
+                        if (checkCol(i,j,+1)){
+                            return true;
+                        }
+                    }
                     if((up||down)&&(left||right)) {
                         return true;
                     }
@@ -347,21 +439,21 @@ public class SokobanGame {
             int i=p/100, j=p-100*i;
             if (curLevel[i][j] != GOAL && curMap[i][j] == BOX) {
                 boolean up=false, down=false, left=false, right=false;
-                if(i==0 || curMap[i-1][j] == WALL||curMap[i-1][j] == BOX) { up=true;}
-                if(i==curMap.length-1 || curMap[i+1][j] == WALL || curMap[i+1][j] == BOX) { down=true; }
-                if(j==0 || curMap[i][j-1] == WALL || curMap[i][j-1] == BOX) { left=true; }
-                if(j==curMap[i].length-1 || curMap[i][j+1] == WALL || curMap[i][j+1] == BOX) { right=true; }
+                if(curMap[i-1][j] == WALL||curMap[i-1][j] == BOX) { up=true;}
+                if(curMap[i+1][j] == WALL || curMap[i+1][j] == BOX) { down=true; }
+                if(curMap[i][j-1] == WALL || curMap[i][j-1] == BOX) { left=true; }
+                if(curMap[i][j+1] == WALL || curMap[i][j+1] == BOX) { right=true; }
                 if((up||down)&&(left||right)) {
-                    if(i!=0 && curMap[i-1][j] == BOX){
+                    if(curMap[i-1][j] == BOX){
                         graph.get(box_pos.get(p)).add(box_pos.get(100*(i-1)+j));
                     }
-                    if(i!=curMap.length-1 && curMap[i+1][j] == BOX){
+                    if(curMap[i+1][j] == BOX){
                         graph.get(box_pos.get(p)).add(box_pos.get(100*(i+1)+j));
                     }
-                    if(j!=0 && curMap[i][j-1] == BOX){
+                    if(curMap[i][j-1] == BOX){
                         graph.get(box_pos.get(p)).add(box_pos.get(100*i+j-1));
                     }
-                    if(j!=curMap[i].length-1 && curMap[i][j+1] == BOX){
+                    if(curMap[i][j+1] == BOX){
                         graph.get(box_pos.get(p)).add(box_pos.get(100*i+j+1));
                     }
                 }
