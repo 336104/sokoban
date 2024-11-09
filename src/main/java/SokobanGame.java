@@ -399,6 +399,51 @@ public class SokobanGame {
         System.out.println("\u001B[34ma\u001B[0m左移，\u001B[34md\u001B[0m右移，\u001B[34mw\u001B[0m上移，\u001B[34ms\u001B[0m下移，\u001B[34mr\u001B[0m撤销，\u001B[34me\u001B[0m选择关卡，\u001B[34mp\u001B[0m输出本条消息，\u001B[34mt\u001B[0m重新开始\n");
     }
 
+//----------------------------------------------------------------------------------------------------------------------
+    public void moveBoxesToGoals() {
+        // 遍历地图上的所有目标点
+        for (int i = 0; i < curMap.length; i++) {
+            for (int j = 0; j < curMap[i].length; j++) {
+                // 如果当前位置是目标点
+                if (curMap[i][j] == GOAL) {
+                    // 查找地图上最近的箱子
+                    Point boxPosition = findClosestBox(i, j);
+                    if (boxPosition != null) {
+                        // 将箱子移到目标位置
+                        curMap[i][j] = BOX;  // 设置目标位置为箱子
+                        curMap[boxPosition.x][boxPosition.y] = SPACE;  // 设置箱子原来位置为空
+                    }
+                }
+            }
+        }
+        selectLevel(iCurLevel + 1);
+        drawMap();
+        showMoveInfo();
+
+    }
+
+    // 查找距离目标点最近的箱子
+    private Point findClosestBox(int goalX, int goalY) {
+        // 存储最近的箱子坐标
+        Point closestBox = null;
+        int minDistance = Integer.MAX_VALUE;
+
+        // 遍历地图查找所有箱子
+        for (int i = 0; i < curMap.length; i++) {
+            for (int j = 0; j < curMap[i].length; j++) {
+                if (curMap[i][j] == BOX) {
+                    // 计算当前箱子到目标的曼哈顿距离
+                    int distance = Math.abs(goalX - i) + Math.abs(goalY - j);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        closestBox = new Point(i, j); // 更新最近的箱子
+                    }
+                }
+            }
+        }
+        return closestBox;
+    }
+//----------------------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
 
         // 定义地图的大小（例如16x16的地图）
