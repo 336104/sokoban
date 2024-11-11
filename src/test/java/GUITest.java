@@ -211,7 +211,7 @@ public class GUITest {
         }
 
         // 断言当前关卡是否跳转到指定的关卡
-        frame.label("levelLabel").requireText("第101/100关");
+        frame.label("levelLabel").requireText("第100/100关");
     }
 
     @Test
@@ -227,7 +227,7 @@ public class GUITest {
         }
 
         // 断言当前关卡是否跳转到指定的关卡
-        frame.label("levelLabel").requireText("第-1/100关");
+        frame.label("levelLabel").requireText("第1/100关");
     }
     @Test
     public void testResetButton() {
